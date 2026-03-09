@@ -1,0 +1,2084 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOUNDMATCH ROCK</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── 테마: Orange Burst (기본) ── */
+    :root {
+      --bg:           #060300;
+      --surface:      #0f0500;
+      --surface2:     #1a0a00;
+      --accent:       #d45a00;
+      --gold:         #e8a020;
+      --cream:        #f5e0c0;
+      --text:         #f0d8a8;
+      --muted:        #7a5830;
+      --border:       #2e1a04;
+      --red:          #a03800;
+      --fret-bg-1:    #1a0c00;
+      --fret-bg-2:    #221200;
+      --fret-bg-3:    #1e0e00;
+      --btn-active-bg:   rgba(255, 210, 160, 0.92);
+      --btn-active-text: #1a0800;
+      --btn-active-glow: rgba(212,90,0,0.65);
+      --btn-hover-bg:    rgba(212,90,0,0.09);
+      --btn-hover-text:  rgba(245,225,190,0.88);
+      /* 노브 테마 */
+      --knob-body-hi:  #4a2808;
+      --knob-body-mid: #2e1400;
+      --knob-body-lo:  #180a00;
+      --knob-body-dk:  #0a0400;
+      --knob-ring1:    #3e1e04;
+      --knob-ring2:    #e8a020;
+      --knob-ring3:    #2a1200;
+      --knob-ring2-hv: #f0b840;
+      --knob-ring1-hv: #5e2e08;
+      --knob-glow:     rgba(212,90,0,0.35);
+      --knob-tick:     rgba(232,160,32,0.35);
+      --knob-tick-edge:#e8a020;
+      --knob-num:      rgba(232,160,32,0.45);
+      --knob-num-edge: rgba(232,160,32,0.9);
+      --knob-marker:   #f5e0c0;
+      --panel-bg-1:    #2e1800;
+      --panel-bg-2:    #200e00;
+      --panel-bg-3:    #160800;
+    }
+
+    /* ── 테마: Alpine White ── */
+    :root.theme-white {
+      --bg:           #f0ede6;
+      --surface:      #e8e4dc;
+      --surface2:     #ddd8ce;
+      --accent:       #8b3a1a;
+      --gold:         #7a5c2a;
+      --cream:        #3a2c18;
+      --text:         #2a2018;
+      --muted:        #8a7a60;
+      --border:       #c8bca8;
+      --fret-bg-1:    #2a1a10;
+      --fret-bg-2:    #321e12;
+      --fret-bg-3:    #281808;
+      --btn-active-bg:   rgba(60, 30, 10, 0.88);
+      --btn-active-text: #f0ede6;
+      --btn-active-glow: rgba(139,58,26,0.5);
+      --btn-hover-bg:    rgba(60,40,20,0.07);
+      --btn-hover-text:  rgba(40,30,20,0.9);
+      --knob-body-hi:  #d8d0c0;
+      --knob-body-mid: #c0b898;
+      --knob-body-lo:  #a89870;
+      --knob-body-dk:  #887848;
+      --knob-ring1:    #c0b090;
+      --knob-ring2:    #8b3a1a;
+      --knob-ring3:    #d8c8a8;
+      --knob-ring2-hv: #b84a22;
+      --knob-ring1-hv: #d0c0a0;
+      --knob-glow:     rgba(139,58,26,0.2);
+      --knob-tick:     rgba(100,50,20,0.4);
+      --knob-tick-edge:#8b3a1a;
+      --knob-num:      rgba(100,50,20,0.5);
+      --knob-num-edge: rgba(100,50,20,0.95);
+      --knob-marker:   #3a1a08;
+      --panel-bg-1:    #e0dace;
+      --panel-bg-2:    #d8d2c4;
+      --panel-bg-3:    #cec8b8;
+    }
+
+    /* ── 테마: Ebony ── */
+    :root.theme-ebony {
+      --bg:           #080808;
+      --surface:      #101010;
+      --surface2:     #181818;
+      --accent:       #c0c0c0;
+      --gold:         #e0e0e0;
+      --cream:        #f0f0f0;
+      --text:         #d8d8d8;
+      --muted:        #606060;
+      --border:       #282828;
+      --fret-bg-1:    #0c0c0c;
+      --fret-bg-2:    #141414;
+      --fret-bg-3:    #101010;
+      --btn-active-bg:   rgba(220,220,220,0.92);
+      --btn-active-text: #080808;
+      --btn-active-glow: rgba(200,200,200,0.45);
+      --btn-hover-bg:    rgba(220,220,220,0.06);
+      --btn-hover-text:  rgba(240,240,240,0.9);
+      --knob-body-hi:  #2a2a2a;
+      --knob-body-mid: #181818;
+      --knob-body-lo:  #0c0c0c;
+      --knob-body-dk:  #040404;
+      --knob-ring1:    #303030;
+      --knob-ring2:    #d0d0d0;
+      --knob-ring3:    #1a1a1a;
+      --knob-ring2-hv: #f0f0f0;
+      --knob-ring1-hv: #484848;
+      --knob-glow:     rgba(200,200,200,0.15);
+      --knob-tick:     rgba(200,200,200,0.3);
+      --knob-tick-edge:#d0d0d0;
+      --knob-num:      rgba(200,200,200,0.4);
+      --knob-num-edge: rgba(200,200,200,0.9);
+      --knob-marker:   #e8e8e8;
+      --panel-bg-1:    #141414;
+      --panel-bg-2:    #0c0c0c;
+      --panel-bg-3:    #101010;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background: radial-gradient(ellipse 70% 60% at 50% 40%,
+        rgba(220,100,0,0.18) 0%, rgba(160,60,0,0.10) 45%, rgba(80,20,0,0.04) 70%, transparent 90%);
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.18 0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.045'/%3E%3C/svg%3E");
+    }
+
+    header {
+      position: relative; z-index: 10;
+      padding: 48px 60px 0;
+      display: flex; align-items: flex-end; justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.2em; letter-spacing: 0.12em;
+      color: var(--gold); line-height: 1;
+      text-shadow: 0 2px 12px rgba(201,168,76,0.2);
+    }
+    .logo span {
+      color: var(--cream); opacity: 0.3; font-size: 0.4em; display: block;
+      letter-spacing: 0.35em; font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 300; margin-bottom: 4px;
+    }
+
+    .header-right { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+    .header-line { width: 160px; height: 1px; background: linear-gradient(to right, var(--gold), transparent); }
+
+    .admin-toggle {
+      background: transparent; border: 1px solid var(--border); color: var(--muted);
+      padding: 8px 16px; cursor: pointer; font-size: 0.72em;
+      font-family: 'Noto Sans KR', sans-serif; letter-spacing: 0.1em;
+      transition: all 0.2s; border-radius: 2px;
+    }
+    .admin-toggle:hover, .admin-toggle.active { border-color: var(--gold); color: var(--gold); }
+
+    main {
+      position: relative; z-index: 10;
+      max-width: 1100px; margin: 0 auto; padding: 50px 60px 100px;
+    }
+
+    .headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3em, 8vw, 6em); letter-spacing: 0.05em; line-height: 0.92; margin-bottom: 50px;
+    }
+    .headline em { color: var(--accent); font-style: normal; }
+
+    .section { margin-bottom: 44px; }
+    .section-label {
+      font-size: 0.62em; letter-spacing: 0.3em; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); max-width: 80px; }
+
+    /* ═══════════════════════════════════════════════════
+       기타 프렛보드 — 세로 6칸 × 3열
+       실제 로즈우드/에보니 프렛보드 재현
+    ═══════════════════════════════════════════════════ */
+    .fretboard-wrap {
+      position: relative;
+    }
+
+    /* 넥 측면 바인딩 — 위아래 크림색 줄 */
+    .fretboard-wrap::before,
+    .fretboard-wrap::after {
+      content: '';
+      position: absolute; left: 0; right: 0; height: 5px;
+      background: linear-gradient(90deg,
+        #c9a84c 0%, #e8d898 15%, #c9a84c 30%, #e8d898 50%, #c9a84c 70%, #e8d898 85%, #c9a84c 100%
+      );
+      z-index: 10;
+      box-shadow: 0 0 8px rgba(201,168,76,0.4);
+    }
+    .fretboard-wrap::before { top: 0; border-radius: 3px 3px 0 0; }
+    .fretboard-wrap::after  { bottom: 0; border-radius: 0 0 3px 3px; }
+
+    .fretboard {
+      display: grid;
+      grid-template-columns: 
+        /* 사이드 인레이 도트 칸 */ 28px
+        /* 장르 버튼 3열 */ 1fr 1fr 1fr
+        /* 사이드 인레이 도트 칸 */ 28px;
+
+      position: relative;
+      overflow: hidden;
+
+      /* 로즈우드 목재 질감 */
+      background:
+        repeating-linear-gradient(
+          90deg,
+          transparent 0px, transparent 6px,
+          rgba(0,0,0,0.04) 6px, rgba(0,0,0,0.04) 7px
+        ),
+        repeating-linear-gradient(
+          180deg,
+          transparent 0px, transparent 3px,
+          rgba(255,255,255,0.012) 3px, rgba(255,255,255,0.012) 4px
+        ),
+        linear-gradient(175deg,
+          var(--fret-bg-1) 0%, var(--fret-bg-2) 15%, var(--fret-bg-1) 30%,
+          var(--fret-bg-3) 45%, var(--fret-bg-1) 60%, var(--fret-bg-2) 75%,
+          var(--fret-bg-1) 100%
+        );
+
+      box-shadow:
+        0 0 0 1px rgba(201,168,76,0.4),
+        0 0 0 3px #0e0804,
+        0 0 0 4px rgba(201,168,76,0.2),
+        0 12px 48px rgba(0,0,0,0.9),
+        inset 0 0 60px rgba(0,0,0,0.3);
+    }
+
+    /* ─── 사이드 도트 (왼쪽/오른쪽 포지션 마커) ─── */
+    .fret-side {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      padding: 6px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .side-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%,
+        #ffffff 0%, #d4e8ec 30%, #8abfc8 60%, #4a8a94 100%
+      );
+      box-shadow:
+        0 0 4px rgba(122,200,208,0.6),
+        inset 0 1px 2px rgba(255,255,255,0.8);
+      opacity: 0;  /* 인레이 있는 프렛만 표시 */
+      transition: opacity 0.2s;
+    }
+    /* 인레이 위치: 프렛 3,5,7,9,12,15... (0-indexed 2,4,6,8,11,14) */
+    .side-dot.visible { opacity: 1; }
+
+    /* ─── 프렛 와이어 (가로 금속줄) ─── */
+    .fret-wire-row {
+      grid-column: 1 / -1;
+      height: 3px;
+      background: linear-gradient(180deg,
+        rgba(255,255,255,0.05) 0%,
+        #c9a84c 20%,
+        #e8d898 50%,
+        #c9a84c 80%,
+        rgba(100,80,20,0.3) 100%
+      );
+      box-shadow:
+        0 1px 4px rgba(0,0,0,0.8),
+        0 -1px 2px rgba(201,168,76,0.3),
+        inset 0 0 3px rgba(255,240,180,0.4);
+      position: relative;
+      z-index: 4;
+    }
+
+    /* ─── 프렛 셀 구역 (6줄) ─── */
+    .fret-row-group {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 28px 1fr 1fr 1fr 28px;
+      position: relative;
+    }
+
+    /* 스트링 6줄 오버레이 */
+    .fret-row-group::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 3;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent 0%,
+        transparent calc(20% - 0.7px),
+        rgba(210,200,165,0.12) calc(20% - 0.7px),
+        rgba(210,200,165,0.12) 20%
+      );
+    }
+
+    /* ─── 장르 버튼 ─── */
+    .fret-btn {
+      padding: 16px 6px 16px;
+      background: transparent;
+      border: none;
+      border-right: 1px solid rgba(201,168,76,0.07);
+      color: var(--muted);
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 0.74em;
+      font-weight: 300;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: all 0.14s ease;
+      position: relative;
+      text-align: center;
+      z-index: 5;
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .fret-btn:last-of-type { border-right: none; }
+    .fret-btn:hover {
+      color: var(--btn-hover-text);
+      background: var(--btn-hover-bg);
+    }
+
+    /* ─── 선택 상태: 심플 브라이트 하이라이트 ─── */
+    .fret-btn.active {
+      color: var(--btn-active-text);
+      background: var(--btn-active-bg);
+      box-shadow:
+        inset 0 1px 3px rgba(255,255,255,0.3),
+        inset 0 -1px 2px rgba(0,0,0,0.15),
+        0 0 14px var(--btn-active-glow),
+        0 0 4px var(--btn-active-glow);
+    }
+    .fret-btn.active::before { display: none; }
+    .fret-btn.active::after  { display: none; }
+
+    .fret-btn span {
+      position: relative;
+      z-index: 2;
+      font-size: 0.95em;
+      letter-spacing: 0.02em;
+      transition: all 0.14s;
+      white-space: nowrap;
+    }
+
+    .fret-btn.active span {
+      color: var(--btn-active-text);
+      font-weight: 500;
+    }
+
+    /* ─── 프렛 번호 인디케이터 (측면) ─── */
+    .fret-number {
+      position: absolute;
+      right: 6px; top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.6em;
+      color: rgba(201,168,76,0.18);
+      letter-spacing: 0.05em;
+      z-index: 6;
+      pointer-events: none;
+    }
+
+    /* ─── 넛 (최상단 흰 뼈대) ─── */
+    .fret-nut {
+      grid-column: 1 / -1;
+      height: 7px;
+      background: linear-gradient(180deg,
+        #f5f0e0 0%, #e8dfca 40%, #c8b878 70%, #a09050 100%
+      );
+      box-shadow:
+        0 2px 6px rgba(0,0,0,0.7),
+        0 0 12px rgba(200,184,120,0.3),
+        inset 0 1px 2px rgba(255,255,255,0.6);
+      position: relative;
+      z-index: 5;
+    }
+
+    /* ─── 전체 프렛보드 사이드 도트 위치 지정 ─── */
+    /* 인레이 있는 프렛: 3번(idx2), 5번(idx4), 7번(idx6), 9번(idx8), 12번(idx11=두개), 15번(idx14) */
+
+    /* ══════════════════════════════════════════
+       깁슨 레스폴 60s 컨트롤 패널
+    ══════════════════════════════════════════ */
+    .guitar-panel {
+      position: relative;
+      border-radius: 6px 6px 40px 40px;
+      padding: 36px 48px 40px;
+      overflow: hidden;
+      background:
+        repeating-linear-gradient(
+          92deg,
+          transparent 0px, transparent 22px,
+          rgba(255,255,255,0.008) 22px, rgba(255,255,255,0.008) 23px
+        ),
+        repeating-linear-gradient(
+          180deg,
+          transparent 0px, transparent 60px,
+          rgba(0,0,0,0.06) 60px, rgba(0,0,0,0.06) 61px
+        ),
+        linear-gradient(160deg, var(--panel-bg-1) 0%, var(--panel-bg-2) 40%, var(--panel-bg-3) 100%);
+      box-shadow:
+        0 0 0 1px var(--border),
+        0 0 0 3px var(--bg),
+        0 12px 60px rgba(0,0,0,0.9),
+        inset 0 1px 0 rgba(255,255,255,0.05),
+        inset 0 -1px 0 rgba(0,0,0,0.5);
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+    .guitar-panel::before {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(135deg,
+        rgba(212,207,200,0.12) 0%, transparent 30%,
+        transparent 70%, rgba(212,207,200,0.06) 100%
+      );
+      pointer-events: none;
+    }
+    .panel-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.75em; letter-spacing: 0.55em;
+      color: rgba(201,168,76,0.22);
+      text-align: center; margin-bottom: 36px;
+      text-transform: uppercase;
+    }
+
+    .knobs-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      justify-items: center;
+    }
+
+    .knob-unit {
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+    }
+
+    .knob-outer {
+      width: 96px; height: 96px;
+      border-radius: 50%;
+      position: relative; cursor: pointer;
+      user-select: none;
+      background: radial-gradient(ellipse at 36% 28%,
+        var(--knob-body-hi) 0%, var(--knob-body-mid) 35%,
+        var(--knob-body-lo) 70%, var(--knob-body-dk) 100%
+      );
+      box-shadow:
+        0 8px 32px rgba(0,0,0,0.95),
+        0 3px 10px rgba(0,0,0,0.8),
+        0 0 0 3px var(--knob-ring1),
+        0 0 0 4px var(--knob-ring2),
+        0 0 0 6px var(--knob-ring3),
+        inset 0 2px 4px rgba(255,255,255,0.06),
+        inset 0 -3px 8px rgba(0,0,0,0.7);
+      transition: box-shadow 0.15s ease, background 0.4s ease;
+    }
+    .knob-outer:hover {
+      box-shadow:
+        0 8px 32px rgba(0,0,0,0.95),
+        0 3px 10px rgba(0,0,0,0.8),
+        0 0 0 3px var(--knob-ring1-hv),
+        0 0 0 4px var(--knob-ring2-hv),
+        0 0 0 6px var(--knob-ring3),
+        0 0 18px var(--knob-glow),
+        inset 0 2px 4px rgba(255,255,255,0.09),
+        inset 0 -3px 8px rgba(0,0,0,0.7);
+    }
+    .knob-outer::before {
+      content: '';
+      position: absolute;
+      top: 8%; left: 14%; width: 34%; height: 26%;
+      background: radial-gradient(ellipse,
+        rgba(255,240,190,0.28) 0%, rgba(255,220,140,0.08) 60%, transparent 100%
+      );
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .knob-scale {
+      position: absolute;
+      inset: -18px;
+      pointer-events: none;
+    }
+    .knob-marker {
+      position: absolute;
+      width: 3px; height: 18px;
+      background: linear-gradient(to bottom, var(--knob-marker) 0%, rgba(200,180,150,0.6) 100%);
+      border-radius: 1.5px;
+      left: 50%;
+      transform-origin: 50% 100%;
+      transform: translateX(-50%) rotate(0deg);
+      transition: transform 0.25s cubic-bezier(.25,.8,.25,1), background 0.4s ease, box-shadow 0.4s ease;
+      box-shadow: 0 0 6px var(--knob-glow);
+      pointer-events: none;
+    }
+
+    .step-btns {
+      display: flex; align-items: center; gap: 6px;
+    }
+    .step-btn {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      width: 26px; height: 26px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9em; font-family: 'Bebas Neue', sans-serif;
+      cursor: pointer; transition: all 0.15s; border-radius: 2px;
+      line-height: 1;
+    }
+    .step-btn:hover { border-color: var(--gold); color: var(--gold); background: var(--surface); }
+
+    .step-val {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3em;
+      color: var(--gold);
+      min-width: 22px;
+      text-align: center;
+      letter-spacing: 0.05em;
+      text-shadow: 0 0 8px rgba(201,168,76,0.4);
+    }
+
+    .knob-name {
+      font-size: 0.6em; letter-spacing: 0.22em;
+      color: rgba(201,168,76,0.5);
+      text-transform: uppercase; text-align: center;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    /* 찾기 버튼 */
+    .find-btn {
+      width: 100%; padding: 18px;
+      background: transparent;
+      border: 1px solid var(--gold); color: var(--gold);
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.4em; letter-spacing: 0.3em;
+      cursor: pointer; transition: all 0.3s; position: relative; overflow: hidden; margin-top: 8px;
+    }
+    .find-btn::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #c0200a, var(--gold)); transform: translateX(-100%); transition: transform 0.3s; z-index: 0; }
+    .find-btn:hover::before { transform: translateX(0); }
+    .find-btn:hover { color: #0e0804; }
+    .find-btn span { position: relative; z-index: 1; }
+
+    #results { margin-top: 64px; display: none; }
+    #results.visible { display: block; animation: fadeUp 0.4s ease; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+    .results-header {
+      font-family: 'Bebas Neue', sans-serif; font-size: 2em; letter-spacing: 0.1em;
+      margin-bottom: 32px; border-bottom: 1px solid var(--border); padding-bottom: 16px;
+      display: flex; align-items: baseline; gap: 12px;
+    }
+    .results-header em { color: var(--accent); font-style: normal; font-size: 0.6em; }
+
+    /* 결과 + 미리보기 레이아웃 */
+    .results-body {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .result-list { display: flex; flex-direction: column; gap: 2px; }
+    .result-item {
+      display: flex; align-items: center; gap: 24px;
+      padding: 20px 24px; background: var(--surface);
+      border-left: 2px solid transparent; transition: all 0.2s;
+      text-decoration: none; color: inherit;
+      cursor: pointer;
+    }
+    .result-item:hover { border-left-color: var(--accent); background: var(--surface2); }
+    .result-item.playing { border-left-color: var(--gold); background: var(--surface2); }
+    .result-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.4em; color: var(--border); min-width: 32px; }
+    .result-num.playing-num { color: var(--gold); }
+    .result-info { flex: 1; }
+    .result-title { font-size: 0.95em; font-weight: 500; margin-bottom: 4px; }
+    .result-artist { font-size: 0.78em; color: var(--muted); }
+    .result-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .result-tag { font-size: 0.65em; padding: 3px 10px; border: 1px solid var(--border); color: var(--muted); }
+    .result-play-icon {
+      color: var(--gold); font-size: 1em; opacity: 0.4;
+      transition: opacity 0.2s, transform 0.2s;
+      min-width: 20px; text-align: center;
+    }
+    .result-item:hover .result-play-icon { opacity: 1; transform: scale(1.2); }
+    .result-item.playing .result-play-icon { opacity: 1; color: var(--gold); }
+
+    /* 미리보기 패널 */
+    .preview-panel {
+      position: sticky;
+      top: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+    .preview-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .preview-title-area { flex: 1; min-width: 0; }
+    .preview-song-title {
+      font-size: 0.88em; font-weight: 500;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .preview-song-artist { font-size: 0.72em; color: var(--muted); margin-top: 2px; }
+    .preview-close {
+      background: transparent; border: none; color: var(--muted);
+      cursor: pointer; font-size: 1.1em; padding: 2px 6px;
+      transition: color 0.2s; flex-shrink: 0;
+    }
+    .preview-close:hover { color: var(--text); }
+    .preview-embed {
+      position: relative; width: 100%; padding-bottom: 56.25%;
+      background: #000;
+    }
+    .preview-embed iframe {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      border: none;
+    }
+    .preview-placeholder {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 10px; color: var(--muted);
+    }
+    .preview-placeholder-icon { font-size: 2.5em; opacity: 0.3; }
+    .preview-placeholder-text { font-size: 0.72em; letter-spacing: 0.12em; opacity: 0.5; }
+    .preview-open-btn {
+      display: block; width: 100%; padding: 12px;
+      background: transparent; border: none;
+      border-top: 1px solid var(--border);
+      color: var(--gold); font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85em; letter-spacing: 0.2em;
+      cursor: pointer; transition: background 0.2s; text-align: center;
+      text-decoration: none;
+    }
+    .preview-open-btn:hover { background: var(--surface2); }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    .no-results { text-align: center; padding: 60px 0; color: var(--muted); font-size: 0.9em; letter-spacing: 0.1em; display: none; }
+    .no-results.visible { display: block; }
+
+    /* 관리자 */
+    #admin-panel { display: none; margin-top: 64px; border-top: 1px solid var(--border); padding-top: 48px; }
+    #admin-panel.visible { display: block; animation: fadeUp 0.3s ease; }
+    .admin-header { font-family: 'Bebas Neue', sans-serif; font-size: 2em; letter-spacing: 0.1em; margin-bottom: 32px; }
+    .admin-header em { color: var(--accent); font-style: normal; }
+
+    .add-form { background: var(--surface); padding: 32px; margin-bottom: 40px; border-left: 2px solid var(--accent); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+    .form-field { position: relative; }
+    .form-field input {
+      width: 100%; background: var(--bg); border: 1px solid var(--border); color: var(--text);
+      padding: 12px 16px; font-family: 'Noto Sans KR', sans-serif; font-size: 0.85em;
+      outline: none; transition: border-color 0.2s; border-radius: 2px;
+    }
+    .form-field input:focus { border-color: var(--gold); }
+    .form-field input::placeholder { color: var(--muted); }
+    .form-field .field-label {
+      position: absolute; top: -9px; left: 10px;
+      background: var(--surface); padding: 0 6px;
+      font-size: 0.62em; color: var(--gold); letter-spacing: 0.15em;
+    }
+
+    .form-genres { margin-bottom: 20px; }
+    .form-genres-label { font-size: 0.65em; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 10px; }
+
+    .form-knob-panel {
+      background: var(--bg);
+      border: 1px solid var(--border); border-radius: 4px;
+      padding: 20px 24px 16px; margin-bottom: 20px;
+      background:
+        repeating-linear-gradient(92deg, transparent 0px, transparent 22px, rgba(255,255,255,0.005) 22px, rgba(255,255,255,0.005) 23px),
+        linear-gradient(160deg, #1e1208 0%, #120a04 100%);
+    }
+    .form-panel-label { font-size: 0.58em; letter-spacing: 0.3em; color: rgba(201,168,76,0.25); margin-bottom: 16px; font-family: 'Bebas Neue', sans-serif; }
+    .form-knobs-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; justify-items: center; }
+
+    .add-btn {
+      width: 100%; padding: 14px; background: transparent;
+      border: 1px solid var(--gold); color: var(--gold);
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.1em; letter-spacing: 0.25em;
+      cursor: pointer; transition: all 0.2s; position: relative; overflow: hidden;
+    }
+    .add-btn::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--accent), var(--gold)); transform: translateX(-100%); transition: transform 0.2s; z-index: 0; }
+    .add-btn:hover::before { transform: translateX(0); }
+    .add-btn:hover { color: #0e0804; }
+    .add-btn span { position: relative; z-index: 1; }
+
+    .admin-list { display: flex; flex-direction: column; gap: 2px; }
+    .admin-item { display: flex; align-items: center; gap: 20px; padding: 16px 20px; background: var(--surface); }
+    .admin-item:hover { background: var(--surface2); }
+    .admin-item-info { flex: 1; }
+    .admin-item-title { font-size: 0.9em; font-weight: 500; margin-bottom: 3px; }
+    .admin-item-artist { font-size: 0.75em; color: var(--muted); }
+    .admin-item-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .admin-item-tag { font-size: 0.6em; padding: 2px 8px; border: 1px solid var(--border); color: var(--muted); }
+    .delete-btn {
+      background: transparent; border: 1px solid var(--border); color: var(--muted);
+      padding: 6px 14px; cursor: pointer; font-size: 0.75em;
+      font-family: 'Noto Sans KR', sans-serif; transition: all 0.2s; border-radius: 2px; white-space: nowrap;
+    }
+    .delete-btn:hover { border-color: var(--red); color: var(--red); }
+
+    .song-count { font-size: 0.72em; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 16px; }
+    .song-count em { color: var(--accent); font-style: normal; }
+
+    .toast {
+      position: fixed; bottom: 32px; right: 32px;
+      background: var(--accent); color: #000; padding: 12px 24px;
+      font-size: 0.82em; font-weight: 500; letter-spacing: 0.08em;
+      z-index: 9999; opacity: 0; transform: translateY(10px);
+      transition: all 0.3s; pointer-events: none; border-radius: 2px;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+
+    /* ══ 레스폴 3웨이 픽업 셀렉터 ══ */
+    .pickup-selector {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+    }
+
+    .pickup-selector-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.52em;
+      letter-spacing: 0.3em;
+      color: var(--muted);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* 포지션 레이블 (NECK / MID / BRIDGE) */
+    .pickup-pos-labels {
+      display: flex;
+      justify-content: space-between;
+      width: 130px;
+      padding: 0 2px;
+    }
+    .pickup-pos-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.46em;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      opacity: 0.5;
+      transition: color 0.25s, opacity 0.25s;
+      cursor: pointer;
+    }
+    .pickup-pos-label.active {
+      color: var(--gold);
+      opacity: 1;
+    }
+
+
+    /* ══ 레스폴 픽업 셀렉터 — SVG 부채꼴 스윙 ══ */
+    .pickup-selector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      user-select: none;
+    }
+    .pickup-selector-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.52em;
+      letter-spacing: 0.28em;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .pickup-svg { display: block; cursor: pointer; overflow: visible; }
+    .pickup-theme-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.46em;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      text-align: center;
+      min-width: 90px;
+      transition: color 0.3s;
+    }
+    /* 레버는 JS로 직접 재드로잉 */
+
+    /* 바디 전환 애니메이션 */
+    body { transition: background 0.4s ease, color 0.3s ease; }
+    main, header { transition: color 0.3s ease; }
+
+    @media (max-width: 700px) {
+      header { padding: 40px 24px 0; }
+      main { padding: 40px 24px 80px; }
+      .headline { font-size: 3em; }
+      .knobs-row, .form-knobs-row { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .pickup-selector { display: none; }
+      .results-body { grid-template-columns: 1fr; }
+      .preview-panel { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <span>DISCOVER YOUR SOUND</span>
+    SOUNDMATCH ROCK
+  </div>
+  <div class="header-right">
+    <!-- 레스폴 픽업 셀렉터 — 원근감 세로 토글 -->
+    <div class="pickup-selector">
+      <div class="pickup-selector-label">PICKUP SELECT</div>
+
+      <svg id="pickup-svg" class="pickup-svg" width="90" height="120" viewBox="0 0 90 120"
+        style="filter:drop-shadow(0 6px 20px rgba(0,0,0,0.95))">
+        <defs>
+          <radialGradient id="pg" cx="38%" cy="32%" r="68%">
+            <stop offset="0%"   stop-color="#c8c8c8"/>
+            <stop offset="35%"  stop-color="#989898"/>
+            <stop offset="70%"  stop-color="#606060"/>
+            <stop offset="100%" stop-color="#303030"/>
+          </radialGradient>
+          <radialGradient id="ringG" cx="50%" cy="25%" r="75%">
+            <stop offset="0%"   stop-color="#888"/>
+            <stop offset="100%" stop-color="#222"/>
+          </radialGradient>
+          <linearGradient id="slotG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#060606"/>
+            <stop offset="50%"  stop-color="#161616"/>
+            <stop offset="100%" stop-color="#060606"/>
+          </linearGradient>
+          <linearGradient id="shaftG" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%"   stop-color="#0e0802"/>
+            <stop offset="30%"  stop-color="#32200a"/>
+            <stop offset="50%"  stop-color="#402a10"/>
+            <stop offset="70%"  stop-color="#32200a"/>
+            <stop offset="100%" stop-color="#0e0802"/>
+          </linearGradient>
+          <radialGradient id="tipG" cx="34%" cy="26%" r="62%">
+            <stop offset="0%"   stop-color="#f8f4e8"/>
+            <stop offset="45%"  stop-color="#ddd4b0"/>
+            <stop offset="80%"  stop-color="#b8a878"/>
+            <stop offset="100%" stop-color="#9a8858"/>
+          </radialGradient>
+          <radialGradient id="tipHi" cx="30%" cy="22%" r="52%">
+            <stop offset="0%"   stop-color="rgba(255,252,240,0.88)"/>
+            <stop offset="100%" stop-color="rgba(255,252,240,0)"/>
+          </radialGradient>
+          <linearGradient id="rimSideG" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%"   stop-color="rgba(0,0,0,0.38)"/>
+            <stop offset="30%"  stop-color="rgba(0,0,0,0.06)"/>
+            <stop offset="70%"  stop-color="rgba(0,0,0,0.06)"/>
+            <stop offset="100%" stop-color="rgba(0,0,0,0.42)"/>
+          </linearGradient>
+          <filter id="sh">
+            <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="rgba(0,0,0,0.88)"/>
+          </filter>
+          <filter id="slotSh">
+            <feDropShadow dx="0" dy="0" stdDeviation="1.5" flood-color="rgba(0,0,0,1)"/>
+          </filter>
+        </defs>
+
+        <!-- 원형 플레이트 링 -->
+        <circle cx="45" cy="60" r="40" fill="url(#ringG)" stroke="#141414" stroke-width="1.2"/>
+        <circle cx="45" cy="60" r="37" fill="url(#pg)"/>
+        <ellipse cx="38" cy="38" rx="13" ry="7" fill="rgba(255,255,255,0.09)"/>
+
+        <!-- 레이블 -->
+        <text id="svg-lbl-0" x="45" y="26"
+          font-family="'Bebas Neue',sans-serif" font-size="8.5"
+          fill="#c9a84c" letter-spacing="1" text-anchor="middle"
+          style="cursor:pointer" onclick="setTheme(0)">NECK</text>
+        <text id="svg-lbl-2" x="45" y="98"
+          font-family="'Bebas Neue',sans-serif" font-size="8.5"
+          fill="#6b5840" letter-spacing="1" text-anchor="middle"
+          style="cursor:pointer" onclick="setTheme(2)">BRIDGE</text>
+
+        <!-- 세로 슬롯 홈 -->
+        <rect x="40" y="30" width="10" height="60" rx="5"
+          fill="url(#slotG)" filter="url(#slotSh)" stroke="#050505" stroke-width="0.8"/>
+        <rect x="41.2" y="31.5" width="2" height="57" rx="1"
+          fill="rgba(255,255,255,0.03)"/>
+        <rect x="38.5" y="59.2" width="13" height="1.5" rx="0.75"
+          fill="rgba(255,255,255,0.10)"/>
+
+        <!-- 레버 (JS로 그림) -->
+        <g id="lever-group"></g>
+
+        <!-- 클릭 존 -->
+        <rect x="18" y="18" width="54" height="32" fill="transparent" style="cursor:pointer" onclick="setTheme(0)"/>
+        <rect x="18" y="50" width="54" height="20" fill="transparent" style="cursor:pointer" onclick="setTheme(1)"/>
+        <rect x="18" y="70" width="54" height="32" fill="transparent" style="cursor:pointer" onclick="setTheme(2)"/>
+      </svg>
+
+      <div class="pickup-theme-name" id="theme-name">SUNBURST</div>
+    </div>
+    <button class="admin-toggle" id="admin-toggle" onclick="toggleAdmin()">+ 곡 관리</button>
+    <div class="header-line"></div>
+  </div>
+</header>
+
+<main>
+  <h1 class="headline">당신의<br><em>취향</em>을<br>찾아서</h1>
+
+  <div class="section">
+    <div class="section-label">장르 선택</div>
+    <div class="fretboard-wrap">
+      <div class="fretboard" id="genre-tags">
+        <!-- 넛 -->
+        <div class="fret-nut"></div>
+
+        <!-- 프렛 1 (인레이 없음) -->
+        <div class="fret-wire-row"></div>
+        <div class="fret-row-group">
+          <div class="fret-side"><div class="side-dot"></div></div>
+          <button class="fret-btn" data-value="인디 록"><span>인디 록</span></button>
+          <button class="fret-btn" data-value="얼터너티브 록"><span>얼터너티브 록</span></button>
+          <button class="fret-btn" data-value="하드 록"><span>하드 록</span></button>
+          <div class="fret-side"><div class="side-dot"></div></div>
+        </div>
+
+        <!-- 프렛 2 (인레이 없음) -->
+        <div class="fret-wire-row"></div>
+        <div class="fret-row-group">
+          <div class="fret-side"><div class="side-dot"></div></div>
+          <button class="fret-btn" data-value="인디 팝"><span>인디 팝</span></button>
+          <button class="fret-btn" data-value="소프트 록"><span>소프트 록</span></button>
+          <button class="fret-btn" data-value="포크 록"><span>포크 록</span></button>
+          <div class="fret-side"><div class="side-dot"></div></div>
+        </div>
+
+        <!-- 프렛 3 (인레이 도트) -->
+        <div class="fret-wire-row"></div>
+        <div class="fret-row-group" style="position:relative">
+          <div class="fret-side"><div class="side-dot visible"></div></div>
+          <button class="fret-btn" data-value="포스트 록"><span>포스트 록</span></button>
+          <button class="fret-btn" data-value="브릿팝"><span>브릿팝</span></button>
+          <button class="fret-btn" data-value="아트 록"><span>아트 록</span></button>
+          <div class="fret-side"><div class="side-dot visible"></div></div>
+        </div>
+
+        <!-- 프렛 4 (인레이 없음) -->
+        <div class="fret-wire-row"></div>
+        <div class="fret-row-group">
+          <div class="fret-side"><div class="side-dot"></div></div>
+          <button class="fret-btn" data-value="사이키델릭 록"><span>사이키델릭 록</span></button>
+          <button class="fret-btn" data-value="드림 팝"><span>드림 팝</span></button>
+          <button class="fret-btn" data-value="포스트 펑크"><span>포스트 펑크</span></button>
+          <div class="fret-side"><div class="side-dot"></div></div>
+        </div>
+
+        <!-- 프렛 5 (인레이 도트) -->
+        <div class="fret-wire-row"></div>
+        <div class="fret-row-group">
+          <div class="fret-side"><div class="side-dot visible"></div></div>
+          <button class="fret-btn" data-value="개러지 록"><span>개러지 록</span></button>
+          <button class="fret-btn" data-value="이모"><span>이모</span></button>
+          <button class="fret-btn" data-value="글램 록"><span>글램 록</span></button>
+          <div class="fret-side"><div class="side-dot visible"></div></div>
+        </div>
+
+        <!-- 프렛 6 (인레이 없음) -->
+        <div class="fret-wire-row"></div>
+        <div class="fret-row-group">
+          <div class="fret-side"><div class="side-dot"></div></div>
+          <button class="fret-btn" data-value="펑크 록"><span>펑크 록</span></button>
+          <button class="fret-btn" data-value="슈게이징"><span>슈게이징</span></button>
+          <button class="fret-btn" data-value="뉴 웨이브"><span>뉴 웨이브</span></button>
+          <div class="fret-side"><div class="side-dot"></div></div>
+        </div>
+
+        <div class="fret-wire-row"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">분위기 다이얼</div>
+    <div class="guitar-panel">
+      <div class="panel-label">GIBSON · LES PAUL STANDARD · 60s</div>
+      <div class="knobs-row" id="main-knobs"></div>
+    </div>
+  </div>
+
+  <button class="find-btn" onclick="findMusic()"><span>✦ 음악 찾기</span></button>
+
+  <div class="no-results" id="no-results"></div>
+  <div id="results">
+    <div class="results-header">추천 결과 <em id="result-count"></em></div>
+    <div class="results-body">
+      <div class="result-list" id="result-list"></div>
+      <div class="preview-panel" id="preview-panel">
+        <div class="preview-header">
+          <div class="preview-title-area">
+            <div class="preview-song-title" id="preview-song-title">곡을 선택하세요</div>
+            <div class="preview-song-artist" id="preview-song-artist">← 왼쪽 목록에서 클릭</div>
+          </div>
+          <button class="preview-close" onclick="closePreview()" title="닫기">✕</button>
+        </div>
+        <div class="preview-embed" id="preview-embed">
+          <div class="preview-placeholder">
+            <div class="preview-placeholder-icon">♪</div>
+            <div class="preview-placeholder-text">PREVIEW</div>
+          </div>
+        </div>
+        <a class="preview-open-btn" id="preview-open-btn" href="#" target="_blank">↗ 유튜브에서 열기</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="admin-panel">
+    <div class="admin-header">곡 <em>관리</em></div>
+    <div class="add-form">
+      <div class="form-grid">
+        <div class="form-field">
+          <span class="field-label">곡 제목</span>
+          <input type="text" id="f-title" placeholder="예: Fake Plastic Trees">
+        </div>
+        <div class="form-field">
+          <span class="field-label">아티스트</span>
+          <input type="text" id="f-artist" placeholder="예: Radiohead">
+        </div>
+        <div class="form-field" style="grid-column:1/-1">
+          <span class="field-label">유튜브 링크 (없으면 자동 검색)</span>
+          <input type="text" id="f-youtube" placeholder="https://www.youtube.com/watch?v=...">
+        </div>
+      </div>
+      <div class="form-genres">
+        <div class="form-genres-label">장르 선택</div>
+        <div class="fretboard-wrap">
+          <div class="fretboard" id="form-genre-tags">
+            <div class="fret-nut"></div>
+
+            <div class="fret-wire-row"></div>
+            <div class="fret-row-group">
+              <div class="fret-side"><div class="side-dot"></div></div>
+              <button class="fret-btn" data-value="인디 록"><span>인디 록</span></button>
+              <button class="fret-btn" data-value="얼터너티브 록"><span>얼터너티브 록</span></button>
+              <button class="fret-btn" data-value="하드 록"><span>하드 록</span></button>
+              <div class="fret-side"><div class="side-dot"></div></div>
+            </div>
+
+            <div class="fret-wire-row"></div>
+            <div class="fret-row-group">
+              <div class="fret-side"><div class="side-dot"></div></div>
+              <button class="fret-btn" data-value="인디 팝"><span>인디 팝</span></button>
+              <button class="fret-btn" data-value="소프트 록"><span>소프트 록</span></button>
+              <button class="fret-btn" data-value="포크 록"><span>포크 록</span></button>
+              <div class="fret-side"><div class="side-dot"></div></div>
+            </div>
+
+            <div class="fret-wire-row"></div>
+            <div class="fret-row-group">
+              <div class="fret-side"><div class="side-dot visible"></div></div>
+              <button class="fret-btn" data-value="포스트 록"><span>포스트 록</span></button>
+              <button class="fret-btn" data-value="브릿팝"><span>브릿팝</span></button>
+              <button class="fret-btn" data-value="아트 록"><span>아트 록</span></button>
+              <div class="fret-side"><div class="side-dot visible"></div></div>
+            </div>
+
+            <div class="fret-wire-row"></div>
+            <div class="fret-row-group">
+              <div class="fret-side"><div class="side-dot"></div></div>
+              <button class="fret-btn" data-value="사이키델릭 록"><span>사이키델릭 록</span></button>
+              <button class="fret-btn" data-value="드림 팝"><span>드림 팝</span></button>
+              <button class="fret-btn" data-value="포스트 펑크"><span>포스트 펑크</span></button>
+              <div class="fret-side"><div class="side-dot"></div></div>
+            </div>
+
+            <div class="fret-wire-row"></div>
+            <div class="fret-row-group">
+              <div class="fret-side"><div class="side-dot visible"></div></div>
+              <button class="fret-btn" data-value="개러지 록"><span>개러지 록</span></button>
+              <button class="fret-btn" data-value="이모"><span>이모</span></button>
+              <button class="fret-btn" data-value="글램 록"><span>글램 록</span></button>
+              <div class="fret-side"><div class="side-dot visible"></div></div>
+            </div>
+
+            <div class="fret-wire-row"></div>
+            <div class="fret-row-group">
+              <div class="fret-side"><div class="side-dot"></div></div>
+              <button class="fret-btn" data-value="펑크 록"><span>펑크 록</span></button>
+              <button class="fret-btn" data-value="슈게이징"><span>슈게이징</span></button>
+              <button class="fret-btn" data-value="뉴 웨이브"><span>뉴 웨이브</span></button>
+              <div class="fret-side"><div class="side-dot"></div></div>
+            </div>
+
+            <div class="fret-wire-row"></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-knob-panel">
+        <div class="form-panel-label">분위기 설정</div>
+        <div class="form-knobs-row" id="form-knobs"></div>
+      </div>
+      <button class="add-btn" onclick="addSong()"><span>+ 곡 추가</span></button>
+    </div>
+    <div class="song-count" id="song-count"></div>
+    <div class="admin-list" id="admin-list"></div>
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const KNOB_DEFS = [
+    { id: 'emotion', name: '감성' },
+    { id: 'energy',  name: '에너지' },
+    { id: 'calm',    name: '잔잔함' },
+    { id: 'dark',    name: '어두움' },
+  ];
+
+  const MIN = 1, MAX = 10, DEFAULT = 5;
+  function valToAngle(v) { return -135 + (v - 1) / 9 * 270; }
+
+  const state = {};
+  KNOB_DEFS.forEach(k => { state[k.id] = DEFAULT; state['f-'+k.id] = DEFAULT; });
+
+  function buildKnob(id, name, prefix, mini) {
+    const fid   = prefix + id;
+    const sz    = mini ? 64 : 96;
+    const half  = sz / 2;
+
+    const ringR   = half + (mini ? 3 : 4);
+    const dotR    = ringR;
+    const trackR  = ringR + (mini ? 5 : 7);
+    const tickIn  = trackR - (mini ? 2 : 3);
+    const tickOut = trackR + (mini ? 2 : 3);
+    const numR    = trackR + (mini ? 10 : 13);
+
+    const svgSz = sz + (mini ? 64 : 76);
+    const cx = svgSz / 2, cy = svgSz / 2;
+
+    const totalDeg = 270;
+    const startDeg = -135;
+
+    function polarXY(r, deg) {
+      const rad = (deg - 90) * Math.PI / 180;
+      return [cx + r * Math.cos(rad), cy + r * Math.sin(rad)];
+    }
+    const [ax1, ay1] = polarXY(trackR, startDeg);
+    const [ax2, ay2] = polarXY(trackR, startDeg + totalDeg);
+    const trackArc = `M${ax1.toFixed(1)},${ay1.toFixed(1)} A${trackR},${trackR} 0 1 1 ${ax2.toFixed(1)},${ay2.toFixed(1)}`;
+
+    let ticks = '';
+    for (let i = 1; i <= 10; i++) {
+      const deg = startDeg + ((i - 1) / 9) * totalDeg;
+      const rad = (deg - 90) * Math.PI / 180;
+      const x1 = cx + tickIn  * Math.cos(rad);
+      const y1 = cy + tickIn  * Math.sin(rad);
+      const x2 = cx + tickOut * Math.cos(rad);
+      const y2 = cy + tickOut * Math.sin(rad);
+      const nx  = cx + numR   * Math.cos(rad);
+      const ny  = cy + numR   * Math.sin(rad);
+      const isEdge = i === 1 || i === 10;
+      ticks += `
+        <line class="knob-tick-line${isEdge ? ' knob-tick-edge' : ''}"
+          x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}"
+          stroke-width="${isEdge ? 1.5 : 0.9}" stroke-linecap="round"/>
+        <text class="knob-tick-num${isEdge ? ' knob-tick-num-edge' : ''}"
+          x="${nx.toFixed(1)}" y="${ny.toFixed(1)}"
+          font-family="Bebas Neue, sans-serif"
+          font-size="${mini ? 7 : 8.5}"
+          text-anchor="middle" dominant-baseline="middle">${i}</text>
+      `;
+    }
+
+    const initRad = (valToAngle(5) - 90) * Math.PI / 180;
+    const initDx  = cx + dotR * Math.cos(initRad);
+    const initDy  = cy + dotR * Math.sin(initRad);
+
+    return `
+      <div class="knob-unit">
+        <div style="position:relative;width:${svgSz}px;height:${svgSz}px;display:flex;align-items:center;justify-content:center;">
+          <svg id="svg-${fid}" width="${svgSz}" height="${svgSz}"
+            style="position:absolute;inset:0;pointer-events:none;overflow:visible;">
+            <defs>
+              <filter id="dotGlow-${fid}" x="-300%" y="-300%" width="700%" height="700%">
+                <feGaussianBlur stdDeviation="${mini ? 3 : 4}" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+              <filter id="ringGlow-${fid}" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="1.5" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            <path d="${trackArc}" fill="none"
+              stroke="rgba(201,168,76,0.10)" stroke-width="${mini ? 3 : 4}"
+              stroke-linecap="round"/>
+            ${ticks}
+            <circle cx="${cx}" cy="${cy}" r="${ringR}"
+              fill="none"
+              stroke="rgba(201,168,76,0.25)" stroke-width="${mini ? 1.5 : 2}"
+              filter="url(#ringGlow-${fid})"/>
+            <circle id="dot-${fid}"
+              cx="${initDx.toFixed(1)}" cy="${initDy.toFixed(1)}"
+              r="${mini ? 4.5 : 6}"
+              fill="var(--gold)"
+              filter="url(#dotGlow-${fid})"/>
+            <circle id="dot-hi-${fid}"
+              cx="${(initDx - (mini?0.8:1.2)).toFixed(1)}"
+              cy="${(initDy - (mini?0.8:1.2)).toFixed(1)}"
+              r="${mini ? 1.5 : 2}"
+              fill="rgba(255,252,230,0.75)"/>
+          </svg>
+          <div class="knob-outer" id="outer-${fid}"
+            style="width:${sz}px;height:${sz}px;flex-shrink:0;position:relative;"
+            onclick="clickStep('${fid}')"
+            onwheel="wheelStep(event,'${fid}')">
+          </div>
+        </div>
+        <div class="step-btns">
+          <button class="step-btn" onclick="setVal('${fid}',state['${fid}']-1)">−</button>
+          <span class="step-val" id="sval-${fid}">5</span>
+          <button class="step-btn" onclick="setVal('${fid}',state['${fid}']+1)">+</button>
+        </div>
+        <div class="knob-name">${name}</div>
+      </div>
+    `;
+  }
+
+  /* SVG 눈금·점 색상을 현재 테마 CSS 변수에서 동기화 */
+  function updateKnobSVGs() {
+    const style    = getComputedStyle(document.documentElement);
+    const tick     = style.getPropertyValue('--knob-tick').trim();
+    const tickEdge = style.getPropertyValue('--knob-tick-edge').trim();
+    const num      = style.getPropertyValue('--knob-num').trim();
+    const numEdge  = style.getPropertyValue('--knob-num-edge').trim();
+    const gold     = style.getPropertyValue('--gold').trim();
+
+    document.querySelectorAll('.knob-tick-line').forEach(el => {
+      el.setAttribute('stroke', tick);
+    });
+    document.querySelectorAll('.knob-tick-line.knob-tick-edge').forEach(el => {
+      el.setAttribute('stroke', tickEdge);
+    });
+    document.querySelectorAll('.knob-tick-num').forEach(el => {
+      el.setAttribute('fill', num);
+    });
+    document.querySelectorAll('.knob-tick-num.knob-tick-num-edge').forEach(el => {
+      el.setAttribute('fill', numEdge);
+    });
+    // 활성 점도 gold 색상으로 동기화
+    document.querySelectorAll('[id^="dot-"]').forEach(el => {
+      el.setAttribute('fill', gold);
+    });
+  }
+
+  document.getElementById('main-knobs').innerHTML =
+    KNOB_DEFS.map(k => buildKnob(k.id, k.name, '', false)).join('');
+  document.getElementById('form-knobs').innerHTML =
+    KNOB_DEFS.map(k => buildKnob(k.id, k.name, 'f-', true)).join('');
+
+  function applyVal(fid) {
+    const v     = state[fid];
+    const valEl = document.getElementById(`sval-${fid}`);
+    if (valEl) valEl.textContent = v;
+
+    const dot   = document.getElementById(`dot-${fid}`);
+    const dotHi = document.getElementById(`dot-hi-${fid}`);
+    if (!dot) return;
+    const svg   = dot.closest('svg');
+    const svgSz = parseFloat(svg.getAttribute('width'));
+    const cx    = svgSz / 2, cy = svgSz / 2;
+    const outer = document.getElementById(`outer-${fid}`);
+    const sz    = outer ? parseFloat(outer.style.width) : 96;
+    const mini  = sz < 80;
+    const dotR  = sz / 2 + (mini ? 3 : 4);
+    const deg   = valToAngle(v);
+    const rad   = (deg - 90) * Math.PI / 180;
+    const dx    = cx + dotR * Math.cos(rad);
+    const dy    = cy + dotR * Math.sin(rad);
+    dot.setAttribute('cx', dx.toFixed(1));
+    dot.setAttribute('cy', dy.toFixed(1));
+    if (dotHi) {
+      dotHi.setAttribute('cx', (dx - (mini ? 0.8 : 1.2)).toFixed(1));
+      dotHi.setAttribute('cy', (dy - (mini ? 0.8 : 1.2)).toFixed(1));
+    }
+  }
+
+  function setVal(fid, v) {
+    state[fid] = Math.max(MIN, Math.min(MAX, v));
+    applyVal(fid);
+  }
+
+  function clickStep(fid) {
+    state[fid] = state[fid] >= MAX ? MIN : state[fid] + 1;
+    applyVal(fid);
+  }
+
+  function wheelStep(e, fid) {
+    e.preventDefault();
+    setVal(fid, state[fid] + (e.deltaY > 0 ? -1 : 1));
+  }
+
+  [...Object.keys(state)].forEach(applyVal);
+
+  document.querySelectorAll('#genre-tags .fret-btn, #form-genre-tags .fret-btn').forEach(t => {
+    t.addEventListener('click', () => t.classList.toggle('active'));
+  });
+
+  // mood: emotion(감성1-10), energy(에너지1-10), calm(잔잔함1-10), dark(어두움1-10)
+  const DEFAULT_SONGS = [
+    // ── 인디 팝 / 소프트 록 ──
+    { id:1,   title:"너에게 닿기를",      artist:"10CM",              genres:["인디 팝","소프트 록"],      mood:{emotion:9,energy:3,calm:8,dark:1}, youtube:"https://www.youtube.com/results?search_query=10CM+너에게+닿기를" },
+    { id:2,   title:"열기구",             artist:"SURL",              genres:["인디 록","인디 팝"],         mood:{emotion:8,energy:4,calm:8,dark:2}, youtube:"https://www.youtube.com/results?search_query=SURL+열기구" },
+    { id:3,   title:"여기에 있자",        artist:"SURL",              genres:["인디 록","인디 팝"],         mood:{emotion:8,energy:4,calm:7,dark:2}, youtube:"https://www.youtube.com/results?search_query=SURL+여기에+있자" },
+    { id:278, title:"Dry Flower",         artist:"SURL",              genres:["인디 록","인디 팝"],         mood:{emotion:8,energy:5,calm:6,dark:3}, youtube:"https://www.youtube.com/results?search_query=SURL+Dry+Flower" },
+    { id:279, title:"눈",                 artist:"SURL",              genres:["인디 팝","소프트 록"],       mood:{emotion:9,energy:3,calm:8,dark:2}, youtube:"https://www.youtube.com/results?search_query=SURL+눈" },
+
+    // ── TOUCHED ──
+    { id:5,   title:"야경",              artist:"TOUCHED",            genres:["인디 록","드림 팝"],         mood:{emotion:8,energy:4,calm:7,dark:3}, youtube:"https://www.youtube.com/results?search_query=TOUCHED+야경" },
+    { id:6,   title:"Hi Bully",          artist:"TOUCHED",            genres:["인디 록","얼터너티브 록"],   mood:{emotion:7,energy:6,calm:4,dark:4}, youtube:"https://www.youtube.com/results?search_query=TOUCHED+Hi+Bully" },
+    { id:7,   title:"Highlight",         artist:"TOUCHED",            genres:["인디 록"],                   mood:{emotion:7,energy:6,calm:5,dark:3}, youtube:"https://www.youtube.com/results?search_query=TOUCHED+Highlight" },
+    { id:8,   title:"Love is Dangerous", artist:"TOUCHED",            genres:["인디 록","드림 팝"],         mood:{emotion:8,energy:5,calm:5,dark:4}, youtube:"https://www.youtube.com/results?search_query=TOUCHED+Love+is+Dangerous" },
+    { id:229, title:"얼음요새",          artist:"TOUCHED",            genres:["인디 록","포스트 록"],       mood:{emotion:8,energy:5,calm:5,dark:6}, youtube:"https://www.youtube.com/results?search_query=TOUCHED+얼음요새" },
+
+    // ── 한국 인디 ──
+    { id:4,   title:"꿈속에서 놓친 너, 옅은 잠결에 흐르길", artist:"ONEWE", genres:["인디 록","드림 팝"], mood:{emotion:9,energy:3,calm:7,dark:4}, youtube:"https://www.youtube.com/results?search_query=ONEWE+Montage" },
+    { id:9,   title:"내가 널 어떻게 잊어", artist:"바닐라 유니티",    genres:["인디 팝","소프트 록"],       mood:{emotion:9,energy:3,calm:7,dark:4}, youtube:"https://www.youtube.com/results?search_query=바닐라+유니티+내가+널+어떻게+잊어" },
+    { id:10,  title:"승리를 위하여",     artist:"트랜스픽션",         genres:["하드 록","인디 록"],         mood:{emotion:6,energy:8,calm:2,dark:5}, youtube:"https://www.youtube.com/results?search_query=트랜스픽션+승리를+위하여" },
+    { id:15,  title:"nowhere to hide",   artist:"Kamal.",             genres:["인디 팝","드림 팝"],         mood:{emotion:8,energy:3,calm:7,dark:4}, youtube:"https://www.youtube.com/results?search_query=Kamal+nowhere+to+hide" },
+
+    // ── 얼터너티브 록 / 팝 록 ──
+    { id:11,  title:"Mary On A Cross",   artist:"Ghost",              genres:["하드 록","글램 록"],         mood:{emotion:7,energy:6,calm:4,dark:5}, youtube:"https://www.youtube.com/results?search_query=Ghost+Mary+On+A+Cross" },
+    { id:12,  title:"Uprising",          artist:"Muse",               genres:["얼터너티브 록","하드 록"],   mood:{emotion:6,energy:9,calm:1,dark:7}, youtube:"https://www.youtube.com/results?search_query=Muse+Uprising" },
+    { id:13,  title:"505",               artist:"Arctic Monkeys",     genres:["인디 록","개러지 록"],       mood:{emotion:8,energy:5,calm:4,dark:5}, youtube:"https://www.youtube.com/results?search_query=Arctic+Monkeys+505" },
+    { id:14,  title:"I Always Wanna Die (Sometimes)", artist:"The 1975", genres:["인디 팝","얼터너티브 록"], mood:{emotion:9,energy:4,calm:5,dark:7}, youtube:"https://www.youtube.com/results?search_query=The+1975+I+Always+Wanna+Die" },
+    { id:16,  title:"The Phoenix",       artist:"Fall Out Boy",       genres:["이모","얼터너티브 록"],      mood:{emotion:7,energy:8,calm:2,dark:5}, youtube:"https://www.youtube.com/results?search_query=Fall+Out+Boy+The+Phoenix" },
+    { id:17,  title:"One Step Closer",   artist:"LINKIN PARK",        genres:["얼터너티브 록","하드 록"],   mood:{emotion:6,energy:9,calm:1,dark:7}, youtube:"https://www.youtube.com/results?search_query=LINKIN+PARK+One+Step+Closer" },
+    { id:18,  title:"Famous Last Words", artist:"My Chemical Romance",genres:["이모","얼터너티브 록"],      mood:{emotion:8,energy:8,calm:1,dark:7}, youtube:"https://www.youtube.com/results?search_query=My+Chemical+Romance+Famous+Last+Words" },
+    { id:19,  title:"How You Remind Me", artist:"Nickelback",         genres:["하드 록","얼터너티브 록"],   mood:{emotion:7,energy:7,calm:3,dark:5}, youtube:"https://www.youtube.com/results?search_query=Nickelback+How+You+Remind+Me" },
+    { id:20,  title:"(I Can't Get No) Satisfaction", artist:"The Rolling Stones", genres:["하드 록","개러지 록"], mood:{emotion:5,energy:8,calm:2,dark:4}, youtube:"https://www.youtube.com/results?search_query=Rolling+Stones+Satisfaction" },
+    { id:21,  title:"Madness",           artist:"Muse",               genres:["얼터너티브 록","아트 록"],   mood:{emotion:8,energy:5,calm:5,dark:6}, youtube:"https://www.youtube.com/results?search_query=Muse+Madness" },
+    { id:22,  title:"I Was Born To Love You", artist:"Queen",         genres:["하드 록","아트 록"],         mood:{emotion:8,energy:7,calm:3,dark:2}, youtube:"https://www.youtube.com/results?search_query=Queen+I+Was+Born+To+Love+You" },
+    { id:23,  title:"LA Devotee",        artist:"Panic! At The Disco",genres:["인디 팝","뉴 웨이브"],       mood:{emotion:7,energy:7,calm:3,dark:4}, youtube:"https://www.youtube.com/results?search_query=Panic+At+The+Disco+LA+Devotee" },
+    { id:24,  title:"I Hate Everything About You", artist:"Three Days Grace", genres:["하드 록","얼터너티브 록"], mood:{emotion:7,energy:8,calm:1,dark:7}, youtube:"https://www.youtube.com/results?search_query=Three+Days+Grace+I+Hate+Everything+About+You" },
+    { id:25,  title:"The Reason",        artist:"Hoobastank",         genres:["얼터너티브 록","소프트 록"],  mood:{emotion:9,energy:5,calm:5,dark:5}, youtube:"https://www.youtube.com/results?search_query=Hoobastank+The+Reason" },
+    { id:26,  title:"Believer",          artist:"Imagine Dragons",    genres:["얼터너티브 록","인디 록"],   mood:{emotion:7,energy:8,calm:2,dark:6}, youtube:"https://www.youtube.com/results?search_query=Imagine+Dragons+Believer" },
+    { id:27,  title:"Ladies And Gentlemen", artist:"Saliva",          genres:["하드 록","얼터너티브 록"],   mood:{emotion:6,energy:8,calm:2,dark:6}, youtube:"https://www.youtube.com/results?search_query=Saliva+Ladies+And+Gentlemen" },
+    { id:28,  title:"The Trooper",       artist:"Iron Maiden",        genres:["하드 록"],                   mood:{emotion:5,energy:9,calm:1,dark:6}, youtube:"https://www.youtube.com/results?search_query=Iron+Maiden+The+Trooper" },
+    { id:29,  title:"Don't Look Back In Anger", artist:"Oasis",       genres:["브릿팝","인디 록"],          mood:{emotion:8,energy:6,calm:5,dark:3}, youtube:"https://www.youtube.com/results?search_query=Oasis+Dont+Look+Back+In+Anger" },
+    { id:30,  title:"Amsterdam",         artist:"Nothing But Thieves",genres:["얼터너티브 록","인디 록"],   mood:{emotion:8,energy:6,calm:4,dark:6}, youtube:"https://www.youtube.com/results?search_query=Nothing+But+Thieves+Amsterdam" },
+    { id:31,  title:"Civil War",         artist:"Guns N' Roses",      genres:["하드 록"],                   mood:{emotion:7,energy:6,calm:4,dark:6}, youtube:"https://www.youtube.com/results?search_query=Guns+N+Roses+Civil+War" },
+    { id:32,  title:"T.N.T.",            artist:"AC/DC",              genres:["하드 록"],                   mood:{emotion:4,energy:10,calm:1,dark:5}, youtube:"https://www.youtube.com/results?search_query=ACDC+TNT" },
+    { id:33,  title:"Honey Whiskey",     artist:"Nothing But Thieves",genres:["얼터너티브 록","인디 록"],   mood:{emotion:7,energy:7,calm:3,dark:5}, youtube:"https://www.youtube.com/results?search_query=Nothing+But+Thieves+Honey+Whiskey" },
+    { id:34,  title:"Everglow",          artist:"Coldplay",           genres:["얼터너티브 록","소프트 록"],  mood:{emotion:9,energy:3,calm:7,dark:4}, youtube:"https://www.youtube.com/results?search_query=Coldplay+Everglow" },
+    { id:35,  title:"Welcome To The Black Parade", artist:"My Chemical Romance", genres:["이모","얼터너티브 록"], mood:{emotion:9,energy:8,calm:1,dark:8}, youtube:"https://www.youtube.com/results?search_query=My+Chemical+Romance+Welcome+To+The+Black+Parade" },
+    { id:36,  title:"Bitter Sweet Symphony", artist:"The Verve",      genres:["브릿팝","인디 록"],          mood:{emotion:8,energy:5,calm:5,dark:5}, youtube:"https://www.youtube.com/results?search_query=The+Verve+Bitter+Sweet+Symphony" },
+    { id:37,  title:"Metalingus",        artist:"Alter Bridge",       genres:["하드 록","얼터너티브 록"],   mood:{emotion:7,energy:9,calm:1,dark:6}, youtube:"https://www.youtube.com/results?search_query=Alter+Bridge+Metalingus" },
+    { id:38,  title:"The Scientist",     artist:"Coldplay",           genres:["얼터너티브 록","소프트 록"],  mood:{emotion:9,energy:3,calm:7,dark:5}, youtube:"https://www.youtube.com/results?search_query=Coldplay+The+Scientist" },
+    { id:39,  title:"Snow (Hey Oh)",     artist:"Red Hot Chili Peppers", genres:["얼터너티브 록","인디 록"], mood:{emotion:8,energy:5,calm:6,dark:3}, youtube:"https://www.youtube.com/results?search_query=RHCP+Snow+Hey+Oh" },
+    { id:40,  title:"Every Teardrop Is A Waterfall", artist:"Coldplay", genres:["얼터너티브 록"],          mood:{emotion:7,energy:7,calm:3,dark:3}, youtube:"https://www.youtube.com/results?search_query=Coldplay+Every+Teardrop+Is+A+Waterfall" },
+    { id:41,  title:"Crawling In The Dark", artist:"Hoobastank",      genres:["얼터너티브 록","하드 록"],   mood:{emotion:7,energy:7,calm:2,dark:6}, youtube:"https://www.youtube.com/results?search_query=Hoobastank+Crawling+In+The+Dark" },
+    { id:42,  title:"Smoke On The Water", artist:"Deep Purple",       genres:["하드 록"],                   mood:{emotion:5,energy:8,calm:2,dark:5}, youtube:"https://www.youtube.com/results?search_query=Deep+Purple+Smoke+On+The+Water" },
+    { id:43,  title:"Evenflow",          artist:"Pearl Jam",          genres:["얼터너티브 록","하드 록"],   mood:{emotion:6,energy:8,calm:2,dark:5}, youtube:"https://www.youtube.com/results?search_query=Pearl+Jam+Evenflow" },
+    { id:44,  title:"Layla",             artist:"Derek & The Dominos",genres:["하드 록","소프트 록"],       mood:{emotion:8,energy:6,calm:4,dark:4}, youtube:"https://www.youtube.com/results?search_query=Derek+The+Dominos+Layla" },
+    { id:45,  title:"Immortals",         artist:"Fall Out Boy",       genres:["이모","얼터너티브 록"],      mood:{emotion:7,energy:8,calm:2,dark:4}, youtube:"https://www.youtube.com/results?search_query=Fall+Out+Boy+Immortals" },
+    { id:46,  title:"Spirits",           artist:"The Strumbellas",    genres:["인디 팝","포크 록"],         mood:{emotion:8,energy:5,calm:6,dark:4}, youtube:"https://www.youtube.com/results?search_query=The+Strumbellas+Spirits" },
+    { id:47,  title:"Sugar",             artist:"Maroon 5",           genres:["인디 팝"],                   mood:{emotion:7,energy:7,calm:4,dark:1}, youtube:"https://www.youtube.com/results?search_query=Maroon+5+Sugar" },
+    { id:48,  title:"Boulevard of Broken Dreams", artist:"Green Day", genres:["펑크 록","얼터너티브 록"],   mood:{emotion:8,energy:6,calm:4,dark:6}, youtube:"https://www.youtube.com/results?search_query=Green+Day+Boulevard+of+Broken+Dreams" },
+    { id:49,  title:"Bent",              artist:"Matchbox Twenty",    genres:["얼터너티브 록","소프트 록"],  mood:{emotion:8,energy:5,calm:5,dark:5}, youtube:"https://www.youtube.com/results?search_query=Matchbox+Twenty+Bent" },
+    { id:50,  title:"It's Not Over",     artist:"Daughtry",           genres:["하드 록","얼터너티브 록"],   mood:{emotion:8,energy:7,calm:2,dark:6}, youtube:"https://www.youtube.com/results?search_query=Daughtry+Its+Not+Over" },
+    { id:51,  title:"Breath",            artist:"Breaking Benjamin",  genres:["하드 록","얼터너티브 록"],   mood:{emotion:7,energy:8,calm:2,dark:7}, youtube:"https://www.youtube.com/results?search_query=Breaking+Benjamin+Breath" },
+    { id:52,  title:"It's Not Living (If It's Not With You)", artist:"The 1975", genres:["인디 팝","뉴 웨이브"], mood:{emotion:7,energy:7,calm:3,dark:4}, youtube:"https://www.youtube.com/results?search_query=The+1975+Its+Not+Living" },
+    { id:53,  title:"Bones",             artist:"Imagine Dragons",    genres:["얼터너티브 록","인디 록"],   mood:{emotion:6,energy:8,calm:2,dark:5}, youtube:"https://www.youtube.com/results?search_query=Imagine+Dragons+Bones" },
+    { id:54,  title:"All My Life",       artist:"Foo Fighters",       genres:["하드 록","얼터너티브 록"],   mood:{emotion:6,energy:9,calm:1,dark:5}, youtube:"https://www.youtube.com/results?search_query=Foo+Fighters+All+My+Life" },
+    { id:55,  title:"Back In Black",     artist:"AC/DC",              genres:["하드 록"],                   mood:{emotion:4,energy:10,calm:1,dark:5}, youtube:"https://www.youtube.com/results?search_query=ACDC+Back+In+Black" },
+    { id:56,  title:"Basket Case",       artist:"Green Day",          genres:["펑크 록"],                   mood:{emotion:6,energy:9,calm:1,dark:5}, youtube:"https://www.youtube.com/results?search_query=Green+Day+Basket+Case" },
+    { id:57,  title:"It's My Life",      artist:"Bon Jovi",           genres:["하드 록"],                   mood:{emotion:6,energy:8,calm:2,dark:3}, youtube:"https://www.youtube.com/results?search_query=Bon+Jovi+Its+My+Life" },
+    { id:58,  title:"YYZ",               artist:"Rush",               genres:["하드 록","아트 록"],         mood:{emotion:5,energy:9,calm:1,dark:4}, youtube:"https://www.youtube.com/results?search_query=Rush+YYZ" },
+    { id:59,  title:"Sweet Child O' Mine", artist:"Guns N' Roses",    genres:["하드 록"],                   mood:{emotion:7,energy:7,calm:3,dark:3}, youtube:"https://www.youtube.com/results?search_query=Guns+N+Roses+Sweet+Child+O+Mine" },
+    { id:60,  title:"Sunday Bloody Sunday", artist:"U2",              genres:["포스트 펑크","아트 록"],     mood:{emotion:7,energy:7,calm:3,dark:6}, youtube:"https://www.youtube.com/results?search_query=U2+Sunday+Bloody+Sunday" },
+    { id:61,  title:"Let It Be",         artist:"The Beatles",        genres:["소프트 록","포크 록"],       mood:{emotion:9,energy:3,calm:8,dark:3}, youtube:"https://www.youtube.com/results?search_query=Beatles+Let+It+Be" },
+    { id:62,  title:"What's Up?",        artist:"4 Non Blondes",      genres:["얼터너티브 록","소프트 록"],  mood:{emotion:8,energy:6,calm:4,dark:4}, youtube:"https://www.youtube.com/results?search_query=4+Non+Blondes+Whats+Up" },
+    { id:63,  title:"Not Meant To Be",   artist:"Theory Of A Deadman",genres:["하드 록","얼터너티브 록"],   mood:{emotion:8,energy:5,calm:4,dark:6}, youtube:"https://www.youtube.com/results?search_query=Theory+Of+A+Deadman+Not+Meant+To+Be" },
+    { id:64,  title:"We Are The Champions", artist:"Queen",           genres:["하드 록","아트 록"],         mood:{emotion:7,energy:8,calm:2,dark:2}, youtube:"https://www.youtube.com/results?search_query=Queen+We+Are+The+Champions" },
+    { id:66,  title:"Time",              artist:"Pink Floyd",         genres:["아트 록","포스트 록"],       mood:{emotion:8,energy:5,calm:5,dark:6}, youtube:"https://www.youtube.com/results?search_query=Pink+Floyd+Time" },
+    { id:67,  title:"Clocks",            artist:"Coldplay",           genres:["얼터너티브 록","인디 록"],   mood:{emotion:8,energy:6,calm:5,dark:5}, youtube:"https://www.youtube.com/results?search_query=Coldplay+Clocks" },
+    { id:68,  title:"Slither",           artist:"Velvet Revolver",    genres:["하드 록"],                   mood:{emotion:5,energy:9,calm:1,dark:6}, youtube:"https://www.youtube.com/results?search_query=Velvet+Revolver+Slither" },
+    { id:69,  title:"Wake Me Up When September Ends", artist:"Green Day", genres:["펑크 록","소프트 록"],  mood:{emotion:9,energy:4,calm:6,dark:5}, youtube:"https://www.youtube.com/results?search_query=Green+Day+Wake+Me+Up+When+September+Ends" },
+    { id:70,  title:"Can't Stop",        artist:"Red Hot Chili Peppers", genres:["얼터너티브 록","펑크 록"], mood:{emotion:6,energy:8,calm:2,dark:4}, youtube:"https://www.youtube.com/results?search_query=RHCP+Cant+Stop" },
+    { id:71,  title:"Immigrant Song",    artist:"Led Zeppelin",       genres:["하드 록"],                   mood:{emotion:5,energy:10,calm:1,dark:7}, youtube:"https://www.youtube.com/results?search_query=Led+Zeppelin+Immigrant+Song" },
+    { id:72,  title:"Hey Jude",          artist:"The Beatles",        genres:["소프트 록","아트 록"],       mood:{emotion:9,energy:5,calm:5,dark:2}, youtube:"https://www.youtube.com/results?search_query=Beatles+Hey+Jude" },
+    { id:73,  title:"18 And Life",       artist:"Skid Row",           genres:["하드 록"],                   mood:{emotion:7,energy:8,calm:2,dark:6}, youtube:"https://www.youtube.com/results?search_query=Skid+Row+18+And+Life" },
+    { id:74,  title:"Run",               artist:"Collective Soul",    genres:["얼터너티브 록"],             mood:{emotion:7,energy:7,calm:3,dark:4}, youtube:"https://www.youtube.com/results?search_query=Collective+Soul+Run" },
+    { id:75,  title:"Gethsemane",        artist:"Sleep Token",        genres:["포스트 록","얼터너티브 록"], mood:{emotion:9,energy:6,calm:4,dark:8}, youtube:"https://www.youtube.com/results?search_query=Sleep+Token+Gethsemane" },
+    { id:76,  title:"Simple Man",        artist:"Lynyrd Skynyrd",     genres:["소프트 록","포크 록"],       mood:{emotion:9,energy:3,calm:8,dark:3}, youtube:"https://www.youtube.com/results?search_query=Lynyrd+Skynyrd+Simple+Man" },
+    { id:77,  title:"Everything You Want", artist:"Vertical Horizon", genres:["얼터너티브 록","소프트 록"],  mood:{emotion:8,energy:5,calm:5,dark:4}, youtube:"https://www.youtube.com/results?search_query=Vertical+Horizon+Everything+You+Want" },
+    { id:78,  title:"One",               artist:"U2",                 genres:["소프트 록","아트 록"],       mood:{emotion:9,energy:4,calm:6,dark:5}, youtube:"https://www.youtube.com/results?search_query=U2+One" },
+    { id:80,  title:"Endless Rain",      artist:"X-Japan",            genres:["하드 록","소프트 록"],       mood:{emotion:9,energy:4,calm:6,dark:6}, youtube:"https://www.youtube.com/results?search_query=X+Japan+Endless+Rain" },
+    { id:81,  title:"The Blower's Daughter", artist:"Damien Rice",    genres:["포크 록","소프트 록"],       mood:{emotion:9,energy:2,calm:8,dark:6}, youtube:"https://www.youtube.com/results?search_query=Damien+Rice+The+Blowers+Daughter" },
+    { id:82,  title:"Lips Of An Angel",  artist:"Hinder",             genres:["하드 록","소프트 록"],       mood:{emotion:9,energy:4,calm:5,dark:5}, youtube:"https://www.youtube.com/results?search_query=Hinder+Lips+Of+An+Angel" },
+    { id:83,  title:"She's Gone",        artist:"Steelheart",         genres:["하드 록","소프트 록"],       mood:{emotion:9,energy:5,calm:5,dark:5}, youtube:"https://www.youtube.com/results?search_query=Steelheart+Shes+Gone" },
+    { id:84,  title:"Second Chance",     artist:"Shinedown",          genres:["얼터너티브 록","소프트 록"],  mood:{emotion:8,energy:5,calm:5,dark:4}, youtube:"https://www.youtube.com/results?search_query=Shinedown+Second+Chance" },
+    { id:85,  title:"Numb",              artist:"LINKIN PARK",        genres:["얼터너티브 록","하드 록"],   mood:{emotion:8,energy:7,calm:2,dark:8}, youtube:"https://www.youtube.com/results?search_query=LINKIN+PARK+Numb" },
+    { id:86,  title:"Somebody To Love",  artist:"Queen",              genres:["하드 록","아트 록"],         mood:{emotion:8,energy:7,calm:3,dark:4}, youtube:"https://www.youtube.com/results?search_query=Queen+Somebody+To+Love" },
+    { id:87,  title:"Demons",            artist:"Imagine Dragons",    genres:["얼터너티브 록","인디 록"],   mood:{emotion:8,energy:5,calm:4,dark:7}, youtube:"https://www.youtube.com/results?search_query=Imagine+Dragons+Demons" },
+    { id:88,  title:"Under Pressure",    artist:"Queen",              genres:["하드 록","아트 록"],         mood:{emotion:8,energy:7,calm:3,dark:5}, youtube:"https://www.youtube.com/results?search_query=Queen+Under+Pressure" },
+    { id:89,  title:"Someday",           artist:"Nickelback",         genres:["하드 록","소프트 록"],       mood:{emotion:8,energy:5,calm:5,dark:5}, youtube:"https://www.youtube.com/results?search_query=Nickelback+Someday" },
+    { id:90,  title:"Be Yourself",       artist:"Audioslave",         genres:["얼터너티브 록","하드 록"],   mood:{emotion:8,energy:6,calm:4,dark:5}, youtube:"https://www.youtube.com/results?search_query=Audioslave+Be+Yourself" },
+    { id:91,  title:"Psycho",            artist:"Muse",               genres:["얼터너티브 록","하드 록"],   mood:{emotion:5,energy:9,calm:1,dark:7}, youtube:"https://www.youtube.com/results?search_query=Muse+Psycho" },
+    { id:92,  title:"Free Bird",         artist:"Lynyrd Skynyrd",     genres:["소프트 록","포크 록"],       mood:{emotion:8,energy:5,calm:5,dark:3}, youtube:"https://www.youtube.com/results?search_query=Lynyrd+Skynyrd+Free+Bird" },
+    { id:93,  title:"Papercut",          artist:"LINKIN PARK",        genres:["얼터너티브 록","하드 록"],   mood:{emotion:6,energy:8,calm:1,dark:8}, youtube:"https://www.youtube.com/results?search_query=LINKIN+PARK+Papercut" },
+    { id:94,  title:"Starlight",         artist:"Muse",               genres:["얼터너티브 록","아트 록"],   mood:{emotion:8,energy:6,calm:4,dark:4}, youtube:"https://www.youtube.com/results?search_query=Muse+Starlight" },
+    { id:95,  title:"Slow Suicide",      artist:"Scott Stapp",        genres:["하드 록","얼터너티브 록"],   mood:{emotion:8,energy:6,calm:3,dark:7}, youtube:"https://www.youtube.com/results?search_query=Scott+Stapp+Slow+Suicide" },
+    { id:96,  title:"Song 2",            artist:"Blur",               genres:["브릿팝","얼터너티브 록"],    mood:{emotion:5,energy:9,calm:1,dark:5}, youtube:"https://www.youtube.com/results?search_query=Blur+Song+2" },
+    { id:97,  title:"1979",              artist:"The Smashing Pumpkins", genres:["얼터너티브 록","드림 팝"], mood:{emotion:7,energy:5,calm:6,dark:5}, youtube:"https://www.youtube.com/results?search_query=Smashing+Pumpkins+1979" },
+    { id:98,  title:"Stairway To Heaven", artist:"Led Zeppelin",      genres:["하드 록","포크 록","아트 록"], mood:{emotion:8,energy:6,calm:4,dark:5}, youtube:"https://www.youtube.com/results?search_query=Led+Zeppelin+Stairway+To+Heaven" },
+    { id:99,  title:"Don't Stop Me Now", artist:"Queen",              genres:["하드 록","아트 록"],         mood:{emotion:7,energy:9,calm:2,dark:1}, youtube:"https://www.youtube.com/results?search_query=Queen+Dont+Stop+Me+Now" },
+    { id:100, title:"Paradise City",     artist:"Guns N' Roses",      genres:["하드 록"],                   mood:{emotion:6,energy:9,calm:1,dark:5}, youtube:"https://www.youtube.com/results?search_query=Guns+N+Roses+Paradise+City" },
+    { id:101, title:"In Too Deep",       artist:"Sum 41",             genres:["펑크 록","얼터너티브 록"],   mood:{emotion:6,energy:8,calm:2,dark:4}, youtube:"https://www.youtube.com/results?search_query=Sum+41+In+Too+Deep" },
+    { id:102, title:"Summertime",        artist:"My Chemical Romance",genres:["이모","소프트 록"],          mood:{emotion:8,energy:4,calm:6,dark:5}, youtube:"https://www.youtube.com/results?search_query=My+Chemical+Romance+Summertime" },
+    { id:103, title:"All The Same",      artist:"Sick Puppies",       genres:["얼터너티브 록","소프트 록"],  mood:{emotion:8,energy:5,calm:5,dark:5}, youtube:"https://www.youtube.com/results?search_query=Sick+Puppies+All+The+Same" },
+    { id:104, title:"Crazy Train",       artist:"Ozzy Osbourne",      genres:["하드 록"],                   mood:{emotion:5,energy:9,calm:1,dark:6}, youtube:"https://www.youtube.com/results?search_query=Ozzy+Osbourne+Crazy+Train" },
+    { id:105, title:"Whole Lotta Love",  artist:"Led Zeppelin",       genres:["하드 록"],                   mood:{emotion:5,energy:9,calm:1,dark:6}, youtube:"https://www.youtube.com/results?search_query=Led+Zeppelin+Whole+Lotta+Love" },
+    { id:106, title:"Fake It",           artist:"Seether",            genres:["얼터너티브 록","하드 록"],   mood:{emotion:6,energy:8,calm:2,dark:6}, youtube:"https://www.youtube.com/results?search_query=Seether+Fake+It" },
+    { id:107, title:"Photograph",        artist:"Nickelback",         genres:["하드 록","소프트 록"],       mood:{emotion:8,energy:5,calm:5,dark:4}, youtube:"https://www.youtube.com/results?search_query=Nickelback+Photograph" },
+    { id:108, title:"Closer",            artist:"Travis",             genres:["브릿팝","소프트 록"],        mood:{emotion:8,energy:4,calm:6,dark:4}, youtube:"https://www.youtube.com/results?search_query=Travis+Closer" },
+    { id:109, title:"Elephant",          artist:"Damien Rice",        genres:["포크 록","소프트 록"],       mood:{emotion:9,energy:2,calm:7,dark:7}, youtube:"https://www.youtube.com/results?search_query=Damien+Rice+Elephant" },
+    { id:110, title:"Smells Like Teen Spirit", artist:"Nirvana",      genres:["얼터너티브 록","개러지 록"],  mood:{emotion:5,energy:9,calm:1,dark:8}, youtube:"https://www.youtube.com/results?search_query=Nirvana+Smells+Like+Teen+Spirit" },
+    { id:111, title:"Welcome To The Jungle", artist:"Guns N' Roses",  genres:["하드 록"],                   mood:{emotion:5,energy:9,calm:1,dark:6}, youtube:"https://www.youtube.com/results?search_query=Guns+N+Roses+Welcome+To+The+Jungle" },
+    { id:112, title:"Bohemian Rhapsody", artist:"Queen",              genres:["하드 록","아트 록"],         mood:{emotion:9,energy:8,calm:2,dark:6}, youtube:"https://www.youtube.com/results?search_query=Queen+Bohemian+Rhapsody" },
+    { id:113, title:"Live Forever",      artist:"Oasis",              genres:["브릿팝","인디 록"],          mood:{emotion:8,energy:6,calm:5,dark:3}, youtube:"https://www.youtube.com/results?search_query=Oasis+Live+Forever" },
+    { id:114, title:"Don't Cry",         artist:"Guns N' Roses",      genres:["하드 록","소프트 록"],       mood:{emotion:9,energy:4,calm:5,dark:5}, youtube:"https://www.youtube.com/results?search_query=Guns+N+Roses+Dont+Cry" },
+    { id:115, title:"Higher",            artist:"Creed",              genres:["하드 록","얼터너티브 록"],   mood:{emotion:8,energy:7,calm:3,dark:5}, youtube:"https://www.youtube.com/results?search_query=Creed+Higher" },
+    { id:116, title:"We Are Young",      artist:"Fun.",               genres:["인디 팝"],                   mood:{emotion:8,energy:7,calm:3,dark:3}, youtube:"https://www.youtube.com/results?search_query=Fun+We+Are+Young" },
+    { id:117, title:"About You",         artist:"The 1975",           genres:["인디 팝","드림 팝"],         mood:{emotion:8,energy:5,calm:6,dark:3}, youtube:"https://www.youtube.com/results?search_query=The+1975+About+You" },
+    { id:118, title:"Human",             artist:"The Killers",        genres:["인디 록","뉴 웨이브"],       mood:{emotion:7,energy:6,calm:4,dark:4}, youtube:"https://www.youtube.com/results?search_query=The+Killers+Human" },
+    { id:119, title:"In the End",        artist:"LINKIN PARK",        genres:["얼터너티브 록","하드 록"],   mood:{emotion:8,energy:7,calm:2,dark:7}, youtube:"https://www.youtube.com/results?search_query=LINKIN+PARK+In+The+End" },
+    { id:120, title:"21 Guns",           artist:"Green Day",          genres:["펑크 록","소프트 록"],       mood:{emotion:8,energy:5,calm:5,dark:5}, youtube:"https://www.youtube.com/results?search_query=Green+Day+21+Guns" },
+    { id:121, title:"Schism",            artist:"Tool",               genres:["아트 록","포스트 록"],       mood:{emotion:6,energy:7,calm:3,dark:8}, youtube:"https://www.youtube.com/results?search_query=Tool+Schism" },
+    { id:122, title:"Champagne Supernova", artist:"Oasis",            genres:["브릿팝","사이키델릭 록"],    mood:{emotion:8,energy:5,calm:6,dark:4}, youtube:"https://www.youtube.com/results?search_query=Oasis+Champagne+Supernova" },
+    { id:123, title:"In My Blood",       artist:"Shawn Mendes",       genres:["인디 팝","소프트 록"],       mood:{emotion:9,energy:5,calm:5,dark:5}, youtube:"https://www.youtube.com/results?search_query=Shawn+Mendes+In+My+Blood" },
+    { id:124, title:"Wake Up",           artist:"Rage Against The Machine", genres:["하드 록","포스트 펑크"], mood:{emotion:5,energy:10,calm:1,dark:8}, youtube:"https://www.youtube.com/results?search_query=Rage+Against+The+Machine+Wake+Up" },
+    { id:125, title:"Viva La Vida",      artist:"Coldplay",           genres:["얼터너티브 록","아트 록"],   mood:{emotion:8,energy:7,calm:3,dark:4}, youtube:"https://www.youtube.com/results?search_query=Coldplay+Viva+La+Vida" },
+    { id:126, title:"We Will Rock You",  artist:"Queen",              genres:["하드 록"],                   mood:{emotion:5,energy:9,calm:1,dark:4}, youtube:"https://www.youtube.com/results?search_query=Queen+We+Will+Rock+You" },
+    { id:127, title:"Yellow",            artist:"Coldplay",           genres:["얼터너티브 록","인디 팝"],   mood:{emotion:9,energy:4,calm:6,dark:3}, youtube:"https://www.youtube.com/results?search_query=Coldplay+Yellow" },
+    { id:128, title:"Bad Liar",          artist:"Imagine Dragons",    genres:["얼터너티브 록","인디 록"],   mood:{emotion:7,energy:6,calm:4,dark:5}, youtube:"https://www.youtube.com/results?search_query=Imagine+Dragons+Bad+Liar" },
+    { id:129, title:"Knockin' On Heaven's Door", artist:"Guns N' Roses", genres:["하드 록","소프트 록"],   mood:{emotion:8,energy:4,calm:6,dark:5}, youtube:"https://www.youtube.com/results?search_query=Guns+N+Roses+Knockin+On+Heavens+Door" },
+    { id:130, title:"Last Night On Earth", artist:"Green Day",        genres:["펑크 록","소프트 록"],       mood:{emotion:8,energy:5,calm:5,dark:5}, youtube:"https://www.youtube.com/results?search_query=Green+Day+Last+Night+On+Earth" },
+    { id:131, title:"Heavy Is the Crown", artist:"LINKIN PARK",       genres:["얼터너티브 록","하드 록"],   mood:{emotion:7,energy:8,calm:2,dark:7}, youtube:"https://www.youtube.com/results?search_query=LINKIN+PARK+Heavy+Is+the+Crown" },
+    { id:132, title:"Can You Feel My Heart", artist:"Bring Me The Horizon", genres:["얼터너티브 록","포스트 록"], mood:{emotion:8,energy:8,calm:1,dark:8}, youtube:"https://www.youtube.com/results?search_query=Bring+Me+The+Horizon+Can+You+Feel+My+Heart" },
+    { id:133, title:"Master Of Puppets", artist:"Metallica",          genres:["하드 록"],                   mood:{emotion:4,energy:10,calm:1,dark:9}, youtube:"https://www.youtube.com/results?search_query=Metallica+Master+Of+Puppets" },
+    { id:134, title:"November Rain",     artist:"Guns N' Roses",      genres:["하드 록","소프트 록"],       mood:{emotion:9,energy:5,calm:5,dark:5}, youtube:"https://www.youtube.com/results?search_query=Guns+N+Roses+November+Rain" },
+    { id:135, title:"God Save The Queen", artist:"Sex Pistols",       genres:["포스트 펑크"],               mood:{emotion:5,energy:9,calm:1,dark:8}, youtube:"https://www.youtube.com/results?search_query=Sex+Pistols+God+Save+The+Queen" },
+    { id:136, title:"Boomerang",         artist:"Imagine Dragons",    genres:["얼터너티브 록"],             mood:{emotion:6,energy:7,calm:3,dark:4}, youtube:"https://www.youtube.com/results?search_query=Imagine+Dragons+Boomerang" },
+    { id:137, title:"Every Breath You Take", artist:"The Police",     genres:["뉴 웨이브","소프트 록"],     mood:{emotion:7,energy:5,calm:5,dark:5}, youtube:"https://www.youtube.com/results?search_query=The+Police+Every+Breath+You+Take" },
+    { id:138, title:"Killing In the Name", artist:"Rage Against The Machine", genres:["하드 록","포스트 펑크"], mood:{emotion:4,energy:10,calm:1,dark:9}, youtube:"https://www.youtube.com/results?search_query=Rage+Against+The+Machine+Killing+In+the+Name" },
+    { id:139, title:"Radioactive",       artist:"Imagine Dragons",    genres:["얼터너티브 록"],             mood:{emotion:6,energy:7,calm:3,dark:7}, youtube:"https://www.youtube.com/results?search_query=Imagine+Dragons+Radioactive" },
+    { id:140, title:"First Date",        artist:"blink-182",          genres:["펑크 록"],                   mood:{emotion:7,energy:8,calm:2,dark:2}, youtube:"https://www.youtube.com/results?search_query=blink-182+First+Date" },
+    { id:141, title:"Sincerity Is Scary", artist:"The 1975",          genres:["인디 팝"],                   mood:{emotion:8,energy:4,calm:6,dark:4}, youtube:"https://www.youtube.com/results?search_query=The+1975+Sincerity+Is+Scary" },
+    { id:142, title:"American Idiot",    artist:"Green Day",          genres:["펑크 록"],                   mood:{emotion:5,energy:9,calm:1,dark:6}, youtube:"https://www.youtube.com/results?search_query=Green+Day+American+Idiot" },
+    { id:143, title:"Chocolate",         artist:"The 1975",           genres:["인디 팝","인디 록"],         mood:{emotion:7,energy:6,calm:5,dark:3}, youtube:"https://www.youtube.com/results?search_query=The+1975+Chocolate" },
+    { id:144, title:"The Pretender",     artist:"Foo Fighters",       genres:["하드 록","얼터너티브 록"],   mood:{emotion:6,energy:9,calm:1,dark:6}, youtube:"https://www.youtube.com/results?search_query=Foo+Fighters+The+Pretender" },
+    { id:145, title:"Yesterday",         artist:"The Beatles",        genres:["소프트 록","포크 록"],       mood:{emotion:9,energy:2,calm:8,dark:4}, youtube:"https://www.youtube.com/results?search_query=Beatles+Yesterday" },
+    { id:146, title:"Highway To Hell",   artist:"AC/DC",              genres:["하드 록"],                   mood:{emotion:4,energy:10,calm:1,dark:5}, youtube:"https://www.youtube.com/results?search_query=ACDC+Highway+To+Hell" },
+    { id:147, title:"My Sacrifice",      artist:"Creed",              genres:["하드 록","얼터너티브 록"],   mood:{emotion:8,energy:7,calm:3,dark:6}, youtube:"https://www.youtube.com/results?search_query=Creed+My+Sacrifice" },
+    { id:148, title:"My Hero",           artist:"Foo Fighters",       genres:["하드 록","얼터너티브 록"],   mood:{emotion:7,energy:8,calm:2,dark:5}, youtube:"https://www.youtube.com/results?search_query=Foo+Fighters+My+Hero" },
+    { id:149, title:"Wonderwall",        artist:"Oasis",              genres:["브릿팝","인디 록"],          mood:{emotion:8,energy:5,calm:6,dark:3}, youtube:"https://www.youtube.com/results?search_query=Oasis+Wonderwall" },
+    { id:150, title:"Fix You",           artist:"Coldplay",           genres:["얼터너티브 록","소프트 록"],  mood:{emotion:9,energy:3,calm:7,dark:5}, youtube:"https://www.youtube.com/results?search_query=Coldplay+Fix+You" },
+    { id:151, title:"Robbers",           artist:"The 1975",           genres:["인디 팝","인디 록"],         mood:{emotion:9,energy:4,calm:5,dark:6}, youtube:"https://www.youtube.com/results?search_query=The+1975+Robbers" },
+    { id:152, title:"Open Your Eyes",    artist:"Alter Bridge",       genres:["하드 록","얼터너티브 록"],   mood:{emotion:8,energy:7,calm:3,dark:5}, youtube:"https://www.youtube.com/results?search_query=Alter+Bridge+Open+Your+Eyes" },
+    { id:153, title:"All You Need Is Love", artist:"The Beatles",     genres:["소프트 록","아트 록"],       mood:{emotion:9,energy:5,calm:6,dark:1}, youtube:"https://www.youtube.com/results?search_query=Beatles+All+You+Need+Is+Love" },
+    { id:154, title:"우리의 밤",         artist:"Sondia",             genres:["인디 팝","소프트 록"],       mood:{emotion:9,energy:3,calm:7,dark:3}, youtube:"https://www.youtube.com/results?search_query=Sondia+우리의+밤" },
+    { id:155, title:"별 빛이 내린다",    artist:"안녕바다",           genres:["인디 팝","소프트 록"],       mood:{emotion:9,energy:3,calm:8,dark:2}, youtube:"https://www.youtube.com/results?search_query=안녕바다+별+빛이+내린다" },
+    { id:156, title:"Black",             artist:"Pearl Jam",          genres:["얼터너티브 록","소프트 록"],  mood:{emotion:9,energy:4,calm:6,dark:6}, youtube:"https://www.youtube.com/results?search_query=Pearl+Jam+Black" },
+    { id:157, title:"Champagne",         artist:"Cavo",               genres:["얼터너티브 록"],             mood:{emotion:7,energy:6,calm:4,dark:5}, youtube:"https://www.youtube.com/results?search_query=Cavo+Champagne" },
+    { id:158, title:"Here Without You",  artist:"3 Doors Down",       genres:["하드 록","소프트 록"],       mood:{emotion:9,energy:4,calm:6,dark:5}, youtube:"https://www.youtube.com/results?search_query=3+Doors+Down+Here+Without+You" },
+    { id:159, title:"Happy?",            artist:"Mudvayne",           genres:["하드 록"],                   mood:{emotion:6,energy:8,calm:1,dark:8}, youtube:"https://www.youtube.com/results?search_query=Mudvayne+Happy" },
+    { id:160, title:"Hanging By A Moment", artist:"Lifehouse",        genres:["얼터너티브 록","소프트 록"],  mood:{emotion:8,energy:5,calm:5,dark:4}, youtube:"https://www.youtube.com/results?search_query=Lifehouse+Hanging+By+A+Moment" },
+    { id:161, title:"All These Lives",   artist:"Daughtry",           genres:["하드 록","얼터너티브 록"],   mood:{emotion:8,energy:6,calm:3,dark:6}, youtube:"https://www.youtube.com/results?search_query=Daughtry+All+These+Lives" },
+    { id:162, title:"Oops!... I Did It Again (Cover)", artist:"윌리K, 오은철, Danny Lee, Vincent", genres:["인디 록","인디 팝"], mood:{emotion:6,energy:7,calm:4,dark:2}, youtube:"https://www.youtube.com/results?search_query=윌리K+오은철+Danny+Lee+Vincent+Oops" },
+    { id:163, title:"Rise Today",        artist:"Alter Bridge",       genres:["하드 록","얼터너티브 록"],   mood:{emotion:7,energy:8,calm:2,dark:5}, youtube:"https://www.youtube.com/results?search_query=Alter+Bridge+Rise+Today" },
+    { id:164, title:"Awake",             artist:"Godsmack",           genres:["하드 록"],                   mood:{emotion:5,energy:9,calm:1,dark:7}, youtube:"https://www.youtube.com/results?search_query=Godsmack+Awake" },
+    { id:165, title:"Everlong",          artist:"Foo Fighters",       genres:["하드 록","얼터너티브 록"],   mood:{emotion:8,energy:7,calm:3,dark:5}, youtube:"https://www.youtube.com/results?search_query=Foo+Fighters+Everlong" },
+    { id:167, title:"With Arms Wide Open", artist:"Creed",            genres:["하드 록","소프트 록"],       mood:{emotion:9,energy:4,calm:6,dark:3}, youtube:"https://www.youtube.com/results?search_query=Creed+With+Arms+Wide+Open" },
+    { id:168, title:"Like A Stone",      artist:"Audioslave",         genres:["하드 록","얼터너티브 록"],   mood:{emotion:8,energy:5,calm:4,dark:7}, youtube:"https://www.youtube.com/results?search_query=Audioslave+Like+A+Stone" },
+    { id:169, title:"Iris",              artist:"Goo Goo Dolls",      genres:["소프트 록","얼터너티브 록"],  mood:{emotion:10,energy:3,calm:6,dark:5}, youtube:"https://www.youtube.com/results?search_query=Goo+Goo+Dolls+Iris" },
+    { id:170, title:"What's This Life For", artist:"Creed",           genres:["하드 록","얼터너티브 록"],   mood:{emotion:8,energy:6,calm:4,dark:6}, youtube:"https://www.youtube.com/results?search_query=Creed+Whats+This+Life+For" },
+    { id:172, title:"Wasteland",         artist:"10 Years",           genres:["얼터너티브 록","하드 록"],   mood:{emotion:7,energy:6,calm:4,dark:7}, youtube:"https://www.youtube.com/results?search_query=10+Years+Wasteland" },
+    { id:173, title:"Blurry",            artist:"Puddle Of Mudd",     genres:["얼터너티브 록","하드 록"],   mood:{emotion:8,energy:6,calm:3,dark:6}, youtube:"https://www.youtube.com/results?search_query=Puddle+Of+Mudd+Blurry" },
+    { id:174, title:"Enter Sandman",     artist:"Metallica",          genres:["하드 록"],                   mood:{emotion:5,energy:9,calm:1,dark:8}, youtube:"https://www.youtube.com/results?search_query=Metallica+Enter+Sandman" },
+    { id:175, title:"Hate Me",           artist:"Blue October",       genres:["얼터너티브 록","소프트 록"],  mood:{emotion:8,energy:5,calm:4,dark:8}, youtube:"https://www.youtube.com/results?search_query=Blue+October+Hate+Me" },
+    { id:176, title:"I'm Not Okay (I Promise)", artist:"My Chemical Romance", genres:["이모"],             mood:{emotion:8,energy:8,calm:1,dark:7}, youtube:"https://www.youtube.com/results?search_query=My+Chemical+Romance+Im+Not+Okay" },
+    { id:177, title:"Animals",           artist:"Nickelback",         genres:["하드 록"],                   mood:{emotion:5,energy:8,calm:2,dark:5}, youtube:"https://www.youtube.com/results?search_query=Nickelback+Animals" },
+    { id:178, title:"난 괜찮아",          artist:"Vincent, Danny Lee, Cyan, 윌리K", genres:["인디 팝","인디 록"], mood:{emotion:7,energy:6,calm:5,dark:3}, youtube:"https://www.youtube.com/results?search_query=Vincent+Danny+Lee+Cyan+윌리K+난괜찮아" },
+    { id:179, title:"The Great Gig In The Sky", artist:"Pink Floyd",  genres:["아트 록","포스트 록"],       mood:{emotion:9,energy:4,calm:5,dark:6}, youtube:"https://www.youtube.com/results?search_query=Pink+Floyd+The+Great+Gig+In+The+Sky" },
+    { id:180, title:"Savior",            artist:"Skillet",            genres:["하드 록","얼터너티브 록"],   mood:{emotion:7,energy:8,calm:2,dark:6}, youtube:"https://www.youtube.com/results?search_query=Skillet+Savior" },
+    { id:181, title:"Anyone Can Play Guitar", artist:"Radiohead",     genres:["얼터너티브 록","인디 록"],   mood:{emotion:6,energy:6,calm:4,dark:5}, youtube:"https://www.youtube.com/results?search_query=Radiohead+Anyone+Can+Play+Guitar" },
+    { id:182, title:"Save Me",           artist:"Shinedown",          genres:["하드 록","얼터너티브 록"],   mood:{emotion:8,energy:6,calm:3,dark:6}, youtube:"https://www.youtube.com/results?search_query=Shinedown+Save+Me" },
+    { id:183, title:"It's Been A While", artist:"Staind",             genres:["하드 록","얼터너티브 록"],   mood:{emotion:8,energy:5,calm:4,dark:6}, youtube:"https://www.youtube.com/results?search_query=Staind+Its+Been+A+While" },
+    { id:184, title:"Hemorrhage (In My Hands)", artist:"Fuel",        genres:["하드 록","얼터너티브 록"],   mood:{emotion:8,energy:6,calm:3,dark:6}, youtube:"https://www.youtube.com/results?search_query=Fuel+Hemorrhage" },
+    { id:185, title:"December",          artist:"Collective Soul",    genres:["얼터너티브 록","소프트 록"],  mood:{emotion:8,energy:5,calm:5,dark:5}, youtube:"https://www.youtube.com/results?search_query=Collective+Soul+December" },
+    { id:186, title:"Through Glass",     artist:"Stone Sour",         genres:["하드 록","얼터너티브 록"],   mood:{emotion:8,energy:5,calm:5,dark:5}, youtube:"https://www.youtube.com/results?search_query=Stone+Sour+Through+Glass" },
+    { id:187, title:"One",               artist:"Creed",              genres:["하드 록","얼터너티브 록"],   mood:{emotion:8,energy:6,calm:4,dark:5}, youtube:"https://www.youtube.com/results?search_query=Creed+One" },
+    { id:188, title:"Dirty Little Thing", artist:"Velvet Revolver",   genres:["하드 록"],                   mood:{emotion:5,energy:9,calm:1,dark:6}, youtube:"https://www.youtube.com/results?search_query=Velvet+Revolver+Dirty+Little+Thing" },
+    { id:189, title:"Sleepwalking",      artist:"Bring Me The Horizon",genres:["얼터너티브 록","포스트 록"], mood:{emotion:8,energy:7,calm:3,dark:7}, youtube:"https://www.youtube.com/results?search_query=Bring+Me+The+Horizon+Sleepwalking" },
+    { id:190, title:"현실의 현실",       artist:"넬",                 genres:["인디 록","포스트 록"],       mood:{emotion:8,energy:5,calm:5,dark:7}, youtube:"https://www.youtube.com/results?search_query=넬+현실의+현실" },
+    { id:191, title:"Holiday / Boulevard of Broken Dreams", artist:"Green Day", genres:["펑크 록"],        mood:{emotion:6,energy:8,calm:2,dark:5}, youtube:"https://www.youtube.com/results?search_query=Green+Day+Holiday" },
+    { id:193, title:"Faint",             artist:"LINKIN PARK",        genres:["얼터너티브 록","하드 록"],   mood:{emotion:6,energy:9,calm:1,dark:7}, youtube:"https://www.youtube.com/results?search_query=LINKIN+PARK+Faint" },
+    { id:194, title:"Hotel California",  artist:"Eagles",             genres:["소프트 록","포크 록"],       mood:{emotion:8,energy:5,calm:5,dark:6}, youtube:"https://www.youtube.com/results?search_query=Eagles+Hotel+California" },
+    { id:195, title:"Kashmir",           artist:"Led Zeppelin",       genres:["하드 록","아트 록"],         mood:{emotion:7,energy:7,calm:3,dark:6}, youtube:"https://www.youtube.com/results?search_query=Led+Zeppelin+Kashmir" },
+    { id:196, title:"I Will",            artist:"The Beatles",        genres:["소프트 록","포크 록"],       mood:{emotion:9,energy:2,calm:9,dark:1}, youtube:"https://www.youtube.com/results?search_query=Beatles+I+Will" },
+    { id:197, title:"One Last Breath",   artist:"Creed",              genres:["하드 록","소프트 록"],       mood:{emotion:9,energy:4,calm:6,dark:6}, youtube:"https://www.youtube.com/results?search_query=Creed+One+Last+Breath" },
+    { id:198, title:"Let There Be Love", artist:"Oasis",              genres:["브릿팝","소프트 록"],        mood:{emotion:8,energy:4,calm:7,dark:3}, youtube:"https://www.youtube.com/results?search_query=Oasis+Let+There+Be+Love" },
+    { id:199, title:"Rosanna",           artist:"Toto",               genres:["소프트 록"],                 mood:{emotion:7,energy:6,calm:5,dark:2}, youtube:"https://www.youtube.com/results?search_query=Toto+Rosanna" },
+    { id:200, title:"Starman",           artist:"David Bowie",        genres:["글램 록","아트 록"],         mood:{emotion:7,energy:6,calm:4,dark:3}, youtube:"https://www.youtube.com/results?search_query=David+Bowie+Starman" },
+    { id:201, title:"The Rumbling",      artist:"SiM",                genres:["하드 록","펑크 록"],         mood:{emotion:6,energy:9,calm:1,dark:7}, youtube:"https://www.youtube.com/results?search_query=SiM+The+Rumbling" },
+    { id:202, title:"Livin' On A Prayer", artist:"Bon Jovi",          genres:["하드 록"],                   mood:{emotion:7,energy:8,calm:2,dark:3}, youtube:"https://www.youtube.com/results?search_query=Bon+Jovi+Livin+On+A+Prayer" },
+
+    // ── 한국 펑크 / 인디 밴드 ──
+    { id:203, title:"말달리자",          artist:"크라잉넛",           genres:["펑크 록","인디 록"],         mood:{emotion:6,energy:9,calm:1,dark:4}, youtube:"https://www.youtube.com/results?search_query=크라잉넛+말달리자" },
+    { id:204, title:"룩셈부르크",        artist:"크라잉넛",           genres:["펑크 록"],                   mood:{emotion:6,energy:8,calm:2,dark:4}, youtube:"https://www.youtube.com/results?search_query=크라잉넛+룩셈부르크" },
+    { id:205, title:"비둘기",            artist:"크라잉넛",           genres:["펑크 록"],                   mood:{emotion:5,energy:7,calm:3,dark:5}, youtube:"https://www.youtube.com/results?search_query=크라잉넛+비둘기" },
+    { id:206, title:"명동콜링",          artist:"크라잉넛",           genres:["펑크 록"],                   mood:{emotion:5,energy:8,calm:2,dark:5}, youtube:"https://www.youtube.com/results?search_query=크라잉넛+명동콜링" },
+    { id:207, title:"밤이 깊었네",       artist:"크라잉넛",           genres:["펑크 록","인디 록"],         mood:{emotion:7,energy:7,calm:3,dark:5}, youtube:"https://www.youtube.com/results?search_query=크라잉넛+밤이+깊었네" },
+    { id:208, title:"좋지 아니한가",     artist:"크라잉넛",           genres:["펑크 록","인디 록"],         mood:{emotion:7,energy:7,calm:3,dark:3}, youtube:"https://www.youtube.com/results?search_query=크라잉넛+좋지+아니한가" },
+    { id:209, title:"오리 날다",         artist:"체리필터",           genres:["펑크 록","인디 록"],         mood:{emotion:7,energy:8,calm:2,dark:4}, youtube:"https://www.youtube.com/results?search_query=체리필터+오리+날다" },
+    { id:210, title:"낭만고양이",        artist:"체리필터",           genres:["인디 록","인디 팝"],         mood:{emotion:8,energy:7,calm:3,dark:3}, youtube:"https://www.youtube.com/results?search_query=체리필터+낭만고양이" },
+    { id:211, title:"넌 내게 반했어",    artist:"노브레인",           genres:["펑크 록"],                   mood:{emotion:7,energy:8,calm:2,dark:3}, youtube:"https://www.youtube.com/results?search_query=노브레인+넌+내게+반했어" },
+    { id:212, title:"풍문으로 들었소",   artist:"장기하와 얼굴들",    genres:["인디 록"],                   mood:{emotion:6,energy:7,calm:4,dark:4}, youtube:"https://www.youtube.com/results?search_query=장기하와+얼굴들+풍문으로+들었소" },
+    { id:213, title:"나에게로 떠나는 여행", artist:"버즈",            genres:["인디 록","소프트 록"],       mood:{emotion:8,energy:5,calm:5,dark:4}, youtube:"https://www.youtube.com/results?search_query=버즈+나에게로+떠나는+여행" },
+    { id:214, title:"달이 차오른다, 가자", artist:"장기하와 얼굴들",  genres:["인디 록"],                   mood:{emotion:7,energy:6,calm:5,dark:4}, youtube:"https://www.youtube.com/results?search_query=장기하와+얼굴들+달이+차오른다" },
+    { id:215, title:"잊을게",            artist:"YB",                 genres:["하드 록","인디 록"],         mood:{emotion:8,energy:6,calm:4,dark:5}, youtube:"https://www.youtube.com/results?search_query=YB+잊을게" },
+    { id:216, title:"흰수염고래",        artist:"YB",                 genres:["하드 록","인디 록"],         mood:{emotion:7,energy:7,calm:3,dark:5}, youtube:"https://www.youtube.com/results?search_query=YB+흰수염고래" },
+    { id:217, title:"사랑 Two",          artist:"윤도현",             genres:["인디 록","소프트 록"],       mood:{emotion:8,energy:5,calm:5,dark:4}, youtube:"https://www.youtube.com/results?search_query=윤도현+사랑+Two" },
+    { id:218, title:"너에게 난, 나에게 넌", artist:"자전거 탄 풍경",  genres:["인디 팝","소프트 록"],       mood:{emotion:9,energy:3,calm:8,dark:2}, youtube:"https://www.youtube.com/results?search_query=자전거+탄+풍경+너에게+난" },
+    { id:219, title:"Drowning",          artist:"WOODZ",              genres:["인디 팝","드림 팝"],         mood:{emotion:8,energy:4,calm:6,dark:5}, youtube:"https://www.youtube.com/results?search_query=WOODZ+Drowning" },
+    { id:220, title:"Butterfly",         artist:"러브홀릭스",         genres:["인디 팝","소프트 록"],       mood:{emotion:8,energy:5,calm:6,dark:3}, youtube:"https://www.youtube.com/results?search_query=러브홀릭스+Butterfly" },
+    { id:221, title:"우산",              artist:"윤하",               genres:["인디 팝","소프트 록"],       mood:{emotion:9,energy:4,calm:7,dark:4}, youtube:"https://www.youtube.com/results?search_query=윤하+우산" },
+    { id:222, title:"Moai",              artist:"서태지",             genres:["하드 록","사이키델릭 록"],   mood:{emotion:6,energy:8,calm:2,dark:7}, youtube:"https://www.youtube.com/results?search_query=서태지+Moai" },
+    { id:223, title:"교실 이데아",       artist:"서태지와 아이들",    genres:["하드 록","얼터너티브 록"],   mood:{emotion:6,energy:8,calm:1,dark:7}, youtube:"https://www.youtube.com/results?search_query=서태지와+아이들+교실+이데아" },
+    { id:224, title:"Lazenca, Save Us",  artist:"넥스트",             genres:["하드 록","아트 록"],         mood:{emotion:7,energy:8,calm:2,dark:6}, youtube:"https://www.youtube.com/results?search_query=넥스트+Lazenca" },
+    { id:225, title:"Eclipse",           artist:"The Rose",           genres:["인디 록","인디 팝"],         mood:{emotion:8,energy:5,calm:5,dark:5}, youtube:"https://www.youtube.com/results?search_query=The+Rose+Eclipse" },
+    { id:226, title:"파도",              artist:"새소년",             genres:["인디 록","사이키델릭 록"],   mood:{emotion:8,energy:6,calm:4,dark:4}, youtube:"https://www.youtube.com/results?search_query=새소년+파도" },
+    { id:227, title:"난춘 (亂春)",       artist:"새소년",             genres:["인디 록","사이키델릭 록"],   mood:{emotion:7,energy:7,calm:3,dark:5}, youtube:"https://www.youtube.com/results?search_query=새소년+난춘" },
+    { id:228, title:"얼음요새",          artist:"디어클라우드",       genres:["인디 록","포스트 록"],       mood:{emotion:8,energy:5,calm:5,dark:6}, youtube:"https://www.youtube.com/results?search_query=디어클라우드+얼음요새" },
+    { id:230, title:"기억을 걷는 시간",  artist:"넬",                 genres:["인디 록","포스트 록"],       mood:{emotion:9,energy:3,calm:7,dark:7}, youtube:"https://www.youtube.com/results?search_query=넬+기억을+걷는+시간" },
+    { id:231, title:"유령의 노래",       artist:"넬",                 genres:["인디 록","포스트 록"],       mood:{emotion:8,energy:4,calm:5,dark:8}, youtube:"https://www.youtube.com/results?search_query=넬+유령의+노래" },
+    { id:232, title:"고양이",            artist:"넬",                 genres:["인디 록","드림 팝"],         mood:{emotion:8,energy:4,calm:6,dark:5}, youtube:"https://www.youtube.com/results?search_query=넬+고양이" },
+    { id:233, title:"Stay",              artist:"넬",                 genres:["인디 록","포스트 록"],       mood:{emotion:8,energy:4,calm:6,dark:6}, youtube:"https://www.youtube.com/results?search_query=넬+Stay" },
+    { id:234, title:"Cliff Parade",      artist:"넬",                 genres:["포스트 록","인디 록"],       mood:{emotion:7,energy:6,calm:4,dark:7}, youtube:"https://www.youtube.com/results?search_query=넬+Cliff+Parade" },
+    { id:235, title:"1:03",              artist:"넬",                 genres:["인디 록","드림 팝"],         mood:{emotion:8,energy:3,calm:7,dark:6}, youtube:"https://www.youtube.com/results?search_query=넬+1:03" },
+    { id:236, title:"bad",               artist:"wave to earth",      genres:["인디 팝","드림 팝"],         mood:{emotion:8,energy:3,calm:7,dark:3}, youtube:"https://www.youtube.com/results?search_query=wave+to+earth+bad" },
+    { id:237, title:"seasons",           artist:"wave to earth",      genres:["인디 팝","드림 팝"],         mood:{emotion:8,energy:3,calm:8,dark:3}, youtube:"https://www.youtube.com/results?search_query=wave+to+earth+seasons" },
+    { id:238, title:"NO PAIN",           artist:"실리카겔",           genres:["인디 록","사이키델릭 록"],   mood:{emotion:6,energy:8,calm:2,dark:7}, youtube:"https://www.youtube.com/results?search_query=실리카겔+NO+PAIN" },
+    { id:239, title:"두개의 달",         artist:"실리카겔",           genres:["인디 록","사이키델릭 록"],   mood:{emotion:7,energy:7,calm:3,dark:7}, youtube:"https://www.youtube.com/results?search_query=실리카겔+두개의+달" },
+    { id:240, title:"Into The Night",    artist:"The Monotones",      genres:["인디 록","드림 팝"],         mood:{emotion:7,energy:5,calm:6,dark:5}, youtube:"https://www.youtube.com/results?search_query=The+Monotones+Into+The+Night" },
+    { id:241, title:"난 별",             artist:"이소라",             genres:["인디 팝","소프트 록"],       mood:{emotion:9,energy:3,calm:7,dark:4}, youtube:"https://www.youtube.com/results?search_query=이소라+난+별" },
+    { id:242, title:"널 위해서라고",     artist:"디어클라우드",       genres:["인디 록","소프트 록"],       mood:{emotion:9,energy:4,calm:6,dark:5}, youtube:"https://www.youtube.com/results?search_query=디어클라우드+널+위해서라고" },
+    { id:243, title:"WOOJOOIN (우주 IN)", artist:"서영주",            genres:["인디 팝"],                   mood:{emotion:8,energy:5,calm:6,dark:3}, youtube:"https://www.youtube.com/results?search_query=서영주+우주IN" },
+    { id:244, title:"그대만 있다면",     artist:"너드커넥션",         genres:["인디 팝","소프트 록"],       mood:{emotion:9,energy:3,calm:8,dark:2}, youtube:"https://www.youtube.com/results?search_query=너드커넥션+그대만+있다면" },
+    { id:245, title:"조용히 완전히 영원히", artist:"너드커넥션",      genres:["인디 팝","소프트 록"],       mood:{emotion:9,energy:3,calm:8,dark:3}, youtube:"https://www.youtube.com/results?search_query=너드커넥션+조용히+완전히+영원히" },
+    { id:246, title:"Hollywood",         artist:"검정치마",           genres:["인디 록","개러지 록"],       mood:{emotion:7,energy:7,calm:3,dark:5}, youtube:"https://www.youtube.com/results?search_query=검정치마+Hollywood" },
+    { id:247, title:"International Love Song", artist:"검정치마",     genres:["인디 록","인디 팝"],         mood:{emotion:8,energy:5,calm:5,dark:4}, youtube:"https://www.youtube.com/results?search_query=검정치마+International+Love+Song" },
+    { id:248, title:"좋아해줘",          artist:"검정치마",           genres:["인디 팝","인디 록"],         mood:{emotion:8,energy:6,calm:4,dark:3}, youtube:"https://www.youtube.com/results?search_query=검정치마+좋아해줘" },
+    { id:249, title:"한시 오분 (1:05)",  artist:"검정치마",           genres:["인디 록","드림 팝"],         mood:{emotion:8,energy:4,calm:6,dark:5}, youtube:"https://www.youtube.com/results?search_query=검정치마+한시+오분" },
+    { id:250, title:"EVERYTHING",        artist:"검정치마",           genres:["인디 록","인디 팝"],         mood:{emotion:8,energy:6,calm:4,dark:4}, youtube:"https://www.youtube.com/results?search_query=검정치마+EVERYTHING" },
+    { id:251, title:"슬픔이여 안녕",     artist:"잔나비",             genres:["인디 팝","소프트 록"],       mood:{emotion:8,energy:4,calm:6,dark:4}, youtube:"https://www.youtube.com/results?search_query=잔나비+슬픔이여+안녕" },
+    { id:252, title:"행운을 빌어요",     artist:"페퍼톤스",           genres:["인디 팝"],                   mood:{emotion:8,energy:6,calm:5,dark:2}, youtube:"https://www.youtube.com/results?search_query=페퍼톤스+행운을+빌어요" },
+    { id:253, title:"Ready, Get Set, Go!", artist:"페퍼톤스",         genres:["인디 팝"],                   mood:{emotion:7,energy:7,calm:4,dark:1}, youtube:"https://www.youtube.com/results?search_query=페퍼톤스+Ready+Get+Set+Go" },
+    { id:254, title:"라이더스",          artist:"페퍼톤스",           genres:["인디 팝","인디 록"],         mood:{emotion:7,energy:7,calm:4,dark:2}, youtube:"https://www.youtube.com/results?search_query=페퍼톤스+라이더스" },
+    { id:255, title:"슬픔이여 안녕",     artist:"델리스파이스",       genres:["인디 팝","소프트 록"],       mood:{emotion:8,energy:4,calm:6,dark:4}, youtube:"https://www.youtube.com/results?search_query=델리스파이스+슬픔이여+안녕" },
+    { id:256, title:"항상 엔진을 켜둘께", artist:"델리스파이스",      genres:["인디 팝","인디 록"],         mood:{emotion:8,energy:5,calm:6,dark:3}, youtube:"https://www.youtube.com/results?search_query=델리스파이스+항상+엔진을+켜둘께" },
+    { id:257, title:"챠우챠우",          artist:"델리스파이스",       genres:["인디 팝","인디 록"],         mood:{emotion:7,energy:6,calm:5,dark:3}, youtube:"https://www.youtube.com/results?search_query=델리스파이스+챠우챠우" },
+    { id:258, title:"고백",              artist:"델리스파이스",       genres:["인디 팝","소프트 록"],       mood:{emotion:8,energy:4,calm:6,dark:4}, youtube:"https://www.youtube.com/results?search_query=델리스파이스+고백" },
+    { id:259, title:"소용돌이",          artist:"피아",               genres:["인디 록","포스트 록"],       mood:{emotion:8,energy:6,calm:4,dark:6}, youtube:"https://www.youtube.com/results?search_query=피아+소용돌이" },
+    { id:260, title:"My Bed",            artist:"피아",               genres:["인디 록","드림 팝"],         mood:{emotion:7,energy:4,calm:6,dark:5}, youtube:"https://www.youtube.com/results?search_query=피아+My+Bed" },
+    { id:261, title:"Loveholic",         artist:"러브홀릭",           genres:["인디 팝","소프트 록"],       mood:{emotion:8,energy:4,calm:6,dark:3}, youtube:"https://www.youtube.com/results?search_query=러브홀릭+Loveholic" },
+    { id:262, title:"하늘을 달리다",     artist:"이적",               genres:["인디 팝","소프트 록"],       mood:{emotion:8,energy:5,calm:6,dark:2}, youtube:"https://www.youtube.com/results?search_query=이적+하늘을+달리다" },
+    { id:263, title:"스물다섯, 스물하나", artist:"자우림",            genres:["인디 록","소프트 록"],       mood:{emotion:8,energy:6,calm:5,dark:4}, youtube:"https://www.youtube.com/results?search_query=자우림+스물다섯+스물하나" },
+    { id:264, title:"앵콜요청금지",      artist:"브로콜리너마저",     genres:["인디 팝","소프트 록"],       mood:{emotion:8,energy:4,calm:6,dark:4}, youtube:"https://www.youtube.com/results?search_query=브로콜리너마저+앵콜요청금지" },
+    { id:265, title:"사랑한다는 말로도 위로가 되지 않는", artist:"브로콜리너마저", genres:["인디 팝","소프트 록"], mood:{emotion:9,energy:2,calm:7,dark:6}, youtube:"https://www.youtube.com/results?search_query=브로콜리너마저+사랑한다는+말로도" },
+    { id:266, title:"From Mark",         artist:"하동균",             genres:["인디 팝","소프트 록"],       mood:{emotion:8,energy:3,calm:7,dark:4}, youtube:"https://www.youtube.com/results?search_query=하동균+From+Mark" },
+    { id:267, title:"소나기",            artist:"몽니",               genres:["인디 록","소프트 록"],       mood:{emotion:8,energy:5,calm:5,dark:4}, youtube:"https://www.youtube.com/results?search_query=몽니+소나기" },
+    { id:268, title:"소년이 어른이 되어", artist:"몽니",              genres:["인디 팝","소프트 록"],       mood:{emotion:9,energy:3,calm:7,dark:4}, youtube:"https://www.youtube.com/results?search_query=몽니+소년이+어른이+되어" },
+    { id:269, title:"TOMBOY",            artist:"혁오",               genres:["인디 록","개러지 록"],       mood:{emotion:6,energy:7,calm:3,dark:5}, youtube:"https://www.youtube.com/results?search_query=혁오+TOMBOY" },
+    { id:270, title:"위잉위잉",          artist:"혁오",               genres:["인디 록","사이키델릭 록"],   mood:{emotion:7,energy:6,calm:4,dark:5}, youtube:"https://www.youtube.com/results?search_query=혁오+위잉위잉" },
+    { id:271, title:"LOVE YA!",          artist:"혁오",               genres:["인디 팝","인디 록"],         mood:{emotion:7,energy:7,calm:4,dark:3}, youtube:"https://www.youtube.com/results?search_query=혁오+LOVE+YA" },
+    { id:272, title:"예뻤어",            artist:"DAY6",               genres:["인디 팝","소프트 록"],       mood:{emotion:9,energy:4,calm:6,dark:4}, youtube:"https://www.youtube.com/results?search_query=DAY6+예뻤어" },
+    { id:273, title:"HAPPY",             artist:"DAY6",               genres:["인디 팝","인디 록"],         mood:{emotion:8,energy:6,calm:4,dark:3}, youtube:"https://www.youtube.com/results?search_query=DAY6+HAPPY" },
+    { id:274, title:"Welcome to the Show", artist:"DAY6",             genres:["인디 록","하드 록"],         mood:{emotion:7,energy:7,calm:3,dark:4}, youtube:"https://www.youtube.com/results?search_query=DAY6+Welcome+to+the+Show" },
+    { id:275, title:"한 페이지가 될 수 있게", artist:"DAY6",          genres:["인디 팝","소프트 록"],       mood:{emotion:9,energy:4,calm:6,dark:3}, youtube:"https://www.youtube.com/results?search_query=DAY6+한+페이지가+될+수+있게" },
+    { id:276, title:"백일몽",            artist:"유다빈밴드",         genres:["인디 팝","드림 팝"],         mood:{emotion:8,energy:4,calm:7,dark:4}, youtube:"https://www.youtube.com/results?search_query=유다빈밴드+백일몽" },
+    { id:277, title:"LETTER",            artist:"유다빈밴드",         genres:["인디 팝","소프트 록"],       mood:{emotion:9,energy:3,calm:7,dark:4}, youtube:"https://www.youtube.com/results?search_query=유다빈밴드+LETTER" },
+    { id:280, title:"Panic Station",     artist:"Muse",               genres:["얼터너티브 록","아트 록"],   mood:{emotion:6,energy:8,calm:2,dark:5}, youtube:"https://www.youtube.com/results?search_query=Muse+Panic+Station" },
+    { id:281, title:"Another One Bites The Dust", artist:"Queen",     genres:["하드 록"],                   mood:{emotion:5,energy:8,calm:2,dark:4}, youtube:"https://www.youtube.com/results?search_query=Queen+Another+One+Bites+The+Dust" },
+    { id:282, title:"APEX",              artist:"실리카겔",           genres:["인디 록","사이키델릭 록"],   mood:{emotion:6,energy:9,calm:1,dark:7}, youtube:"https://www.youtube.com/results?search_query=실리카겔+APEX" },
+    { id:283, title:"믿어선 안될 말",    artist:"넬",                 genres:["인디 록","포스트 록"],       mood:{emotion:8,energy:5,calm:4,dark:7}, youtube:"https://www.youtube.com/results?search_query=넬+믿어선+안될+말" },
+    { id:284, title:"Time is Running Out", artist:"Muse",             genres:["얼터너티브 록","하드 록"],   mood:{emotion:6,energy:8,calm:2,dark:7}, youtube:"https://www.youtube.com/results?search_query=Muse+Time+is+Running+Out" },
+    { id:285, title:"Under Pressure",    artist:"Queen feat. David Bowie", genres:["하드 록","아트 록"],    mood:{emotion:8,energy:7,calm:3,dark:5}, youtube:"https://www.youtube.com/results?search_query=Queen+David+Bowie+Under+Pressure" },
+    { id:286, title:"Hysteria",          artist:"Muse",               genres:["얼터너티브 록","하드 록"],   mood:{emotion:6,energy:9,calm:1,dark:6}, youtube:"https://www.youtube.com/results?search_query=Muse+Hysteria" },
+    { id:287, title:"Magic",             artist:"Coldplay",           genres:["인디 팝","소프트 록"],       mood:{emotion:8,energy:4,calm:6,dark:3}, youtube:"https://www.youtube.com/results?search_query=Coldplay+Magic" },
+
+    // ── Radiohead ──
+    { id:288, title:"Creep",             artist:"Radiohead",          genres:["얼터너티브 록","인디 록"],   mood:{emotion:9,energy:5,calm:3,dark:8}, youtube:"https://www.youtube.com/results?search_query=Radiohead+Creep" },
+    { id:289, title:"Fake Plastic Trees", artist:"Radiohead",         genres:["얼터너티브 록","드림 팝"],   mood:{emotion:9,energy:2,calm:7,dark:7}, youtube:"https://www.youtube.com/results?search_query=Radiohead+Fake+Plastic+Trees" },
+    { id:290, title:"No Surprises",      artist:"Radiohead",          genres:["얼터너티브 록","드림 팝"],   mood:{emotion:8,energy:2,calm:7,dark:7}, youtube:"https://www.youtube.com/results?search_query=Radiohead+No+Surprises" },
+    { id:291, title:"Let Down",          artist:"Radiohead",          genres:["얼터너티브 록","포스트 록"], mood:{emotion:8,energy:4,calm:5,dark:7}, youtube:"https://www.youtube.com/results?search_query=Radiohead+Let+Down" },
+    { id:292, title:"Street Spirit (Fade Out)", artist:"Radiohead",   genres:["얼터너티브 록","드림 팝"],   mood:{emotion:9,energy:2,calm:6,dark:9}, youtube:"https://www.youtube.com/results?search_query=Radiohead+Street+Spirit" },
+    { id:293, title:"High and Dry",      artist:"Radiohead",          genres:["얼터너티브 록","인디 록"],   mood:{emotion:8,energy:3,calm:6,dark:7}, youtube:"https://www.youtube.com/results?search_query=Radiohead+High+and+Dry" },
+    { id:294, title:"Lucky",             artist:"Radiohead",          genres:["얼터너티브 록","포스트 록"], mood:{emotion:8,energy:4,calm:5,dark:7}, youtube:"https://www.youtube.com/results?search_query=Radiohead+Lucky" },
+    { id:295, title:"Idioteque",         artist:"Radiohead",          genres:["얼터너티브 록","뉴 웨이브"], mood:{emotion:7,energy:6,calm:3,dark:8}, youtube:"https://www.youtube.com/results?search_query=Radiohead+Idioteque" },
+    { id:296, title:"Optimistic",        artist:"Radiohead",          genres:["얼터너티브 록","포스트 록"], mood:{emotion:6,energy:6,calm:4,dark:7}, youtube:"https://www.youtube.com/results?search_query=Radiohead+Optimistic" },
+    { id:297, title:"Paranoid Android",  artist:"Radiohead",          genres:["아트 록","얼터너티브 록"],   mood:{emotion:7,energy:6,calm:3,dark:9}, youtube:"https://www.youtube.com/results?search_query=Radiohead+Paranoid+Android" },
+    { id:298, title:"Pyramid Song",      artist:"Radiohead",          genres:["아트 록","드림 팝"],         mood:{emotion:8,energy:3,calm:5,dark:8}, youtube:"https://www.youtube.com/results?search_query=Radiohead+Pyramid+Song" },
+    { id:299, title:"Karma Police",      artist:"Radiohead",          genres:["얼터너티브 록","브릿팝"],    mood:{emotion:8,energy:4,calm:5,dark:7}, youtube:"https://www.youtube.com/results?search_query=Radiohead+Karma+Police" },
+    { id:300, title:"(Nice Dream)",      artist:"Radiohead",          genres:["드림 팝","얼터너티브 록"],   mood:{emotion:7,energy:3,calm:7,dark:6}, youtube:"https://www.youtube.com/results?search_query=Radiohead+Nice+Dream" },
+    { id:301, title:"Exit Music (For A Film)", artist:"Radiohead",    genres:["아트 록","포스트 록"],       mood:{emotion:8,energy:4,calm:4,dark:9}, youtube:"https://www.youtube.com/results?search_query=Radiohead+Exit+Music" },
+    { id:302, title:"How To Disappear Completely", artist:"Radiohead", genres:["드림 팝","포스트 록"],      mood:{emotion:8,energy:2,calm:6,dark:9}, youtube:"https://www.youtube.com/results?search_query=Radiohead+How+To+Disappear+Completely" },
+    { id:303, title:"Everything In Its Right Place", artist:"Radiohead", genres:["아트 록","뉴 웨이브"],   mood:{emotion:7,energy:4,calm:5,dark:8}, youtube:"https://www.youtube.com/results?search_query=Radiohead+Everything+In+Its+Right+Place" },
+    { id:304, title:"Motion Picture Soundtrack", artist:"Radiohead",  genres:["드림 팝","아트 록"],         mood:{emotion:9,energy:1,calm:7,dark:9}, youtube:"https://www.youtube.com/results?search_query=Radiohead+Motion+Picture+Soundtrack" },
+    { id:305, title:"Packt Like Sardines In A Crushd Tin Box", artist:"Radiohead", genres:["아트 록","뉴 웨이브"], mood:{emotion:6,energy:5,calm:4,dark:8}, youtube:"https://www.youtube.com/results?search_query=Radiohead+Packt+Like+Sardines" },
+    { id:306, title:"Morning Bell",      artist:"Radiohead",          genres:["아트 록","드림 팝"],         mood:{emotion:7,energy:4,calm:4,dark:9}, youtube:"https://www.youtube.com/results?search_query=Radiohead+Morning+Bell" },
+    { id:307, title:"You And Whose Army?", artist:"Radiohead",        genres:["얼터너티브 록","포스트 록"], mood:{emotion:7,energy:4,calm:5,dark:8}, youtube:"https://www.youtube.com/results?search_query=Radiohead+You+And+Whose+Army" },
+    { id:308, title:"I Might Be Wrong",  artist:"Radiohead",          genres:["얼터너티브 록","포스트 록"], mood:{emotion:6,energy:6,calm:4,dark:7}, youtube:"https://www.youtube.com/results?search_query=Radiohead+I+Might+Be+Wrong" },
+    { id:309, title:"Knives Out",        artist:"Radiohead",          genres:["얼터너티브 록","인디 록"],   mood:{emotion:7,energy:5,calm:4,dark:7}, youtube:"https://www.youtube.com/results?search_query=Radiohead+Knives+Out" },
+
+    // ── 슈게이징 ──
+    { id:400, title:"Only Shallow",      artist:"My Bloody Valentine",genres:["슈게이징","드림 팝"],       mood:{emotion:7,energy:6,calm:4,dark:6}, youtube:"https://www.youtube.com/results?search_query=My+Bloody+Valentine+Only+Shallow" },
+    { id:401, title:"Sometimes",         artist:"My Bloody Valentine",genres:["슈게이징","드림 팝"],       mood:{emotion:8,energy:3,calm:7,dark:5}, youtube:"https://www.youtube.com/results?search_query=My+Bloody+Valentine+Sometimes" },
+    { id:402, title:"When You Sleep",    artist:"My Bloody Valentine",genres:["슈게이징"],                 mood:{emotion:8,energy:6,calm:4,dark:5}, youtube:"https://www.youtube.com/results?search_query=My+Bloody+Valentine+When+You+Sleep" },
+    { id:403, title:"Alison",            artist:"Slowdive",           genres:["슈게이징","드림 팝"],       mood:{emotion:9,energy:3,calm:7,dark:5}, youtube:"https://www.youtube.com/results?search_query=Slowdive+Alison" },
+    { id:404, title:"Dagger",            artist:"Slowdive",           genres:["슈게이징","드림 팝"],       mood:{emotion:9,energy:2,calm:8,dark:5}, youtube:"https://www.youtube.com/results?search_query=Slowdive+Dagger" },
+    { id:405, title:"When The Sun Hits", artist:"Slowdive",           genres:["슈게이징"],                 mood:{emotion:8,energy:5,calm:5,dark:5}, youtube:"https://www.youtube.com/results?search_query=Slowdive+When+The+Sun+Hits" },
+    { id:406, title:"Souvlaki Space Station", artist:"Slowdive",      genres:["슈게이징","드림 팝"],       mood:{emotion:8,energy:3,calm:8,dark:4}, youtube:"https://www.youtube.com/results?search_query=Slowdive+Souvlaki+Space+Station" },
+    { id:407, title:"Loomer",            artist:"My Bloody Valentine",genres:["슈게이징"],                 mood:{emotion:7,energy:5,calm:5,dark:6}, youtube:"https://www.youtube.com/results?search_query=My+Bloody+Valentine+Loomer" },
+    { id:408, title:"Come In Alone",     artist:"My Bloody Valentine",genres:["슈게이징","드림 팝"],       mood:{emotion:8,energy:5,calm:5,dark:5}, youtube:"https://www.youtube.com/results?search_query=My+Bloody+Valentine+Come+In+Alone" },
+    { id:409, title:"Shine",             artist:"Slowdive",           genres:["슈게이징"],                 mood:{emotion:8,energy:4,calm:6,dark:5}, youtube:"https://www.youtube.com/results?search_query=Slowdive+Shine" },
+    { id:410, title:"Sugar Kane",        artist:"Sonic Youth",        genres:["슈게이징","얼터너티브 록"], mood:{emotion:6,energy:7,calm:3,dark:6}, youtube:"https://www.youtube.com/results?search_query=Sonic+Youth+Sugar+Kane" },
+    { id:411, title:"Teenage Riot",      artist:"Sonic Youth",        genres:["슈게이징","얼터너티브 록"], mood:{emotion:6,energy:7,calm:3,dark:6}, youtube:"https://www.youtube.com/results?search_query=Sonic+Youth+Teenage+Riot" },
+    { id:412, title:"Whirpool",          artist:"Chapterhouse",       genres:["슈게이징","드림 팝"],       mood:{emotion:8,energy:5,calm:5,dark:5}, youtube:"https://www.youtube.com/results?search_query=Chapterhouse+Whirlpool" },
+    { id:413, title:"Here She Comes Now",artist:"Lush",               genres:["슈게이징","드림 팝"],       mood:{emotion:7,energy:5,calm:6,dark:4}, youtube:"https://www.youtube.com/results?search_query=Lush+Here+She+Comes+Now" },
+    { id:414, title:"De-Luxe",           artist:"Lush",               genres:["슈게이징"],                 mood:{emotion:7,energy:6,calm:4,dark:5}, youtube:"https://www.youtube.com/results?search_query=Lush+De-Luxe" },
+
+    // ── 글램 록 ──
+    { id:420, title:"Ziggy Stardust",    artist:"David Bowie",        genres:["글램 록","아트 록"],        mood:{emotion:7,energy:7,calm:3,dark:4}, youtube:"https://www.youtube.com/results?search_query=David+Bowie+Ziggy+Stardust" },
+    { id:421, title:"Suffragette City",  artist:"David Bowie",        genres:["글램 록","하드 록"],        mood:{emotion:5,energy:8,calm:2,dark:4}, youtube:"https://www.youtube.com/results?search_query=David+Bowie+Suffragette+City" },
+    { id:422, title:"Rock 'n' Roll Suicide", artist:"David Bowie",    genres:["글램 록","아트 록"],        mood:{emotion:9,energy:5,calm:3,dark:7}, youtube:"https://www.youtube.com/results?search_query=David+Bowie+Rock+n+Roll+Suicide" },
+    { id:423, title:"Ballroom Blitz",    artist:"Sweet",              genres:["글램 록","하드 록"],        mood:{emotion:5,energy:9,calm:1,dark:4}, youtube:"https://www.youtube.com/results?search_query=Sweet+Ballroom+Blitz" },
+    { id:424, title:"Fox On The Run",    artist:"Sweet",              genres:["글램 록"],                  mood:{emotion:6,energy:8,calm:2,dark:4}, youtube:"https://www.youtube.com/results?search_query=Sweet+Fox+On+The+Run" },
+    { id:425, title:"Get It On",         artist:"T. Rex",             genres:["글램 록"],                  mood:{emotion:6,energy:8,calm:2,dark:4}, youtube:"https://www.youtube.com/results?search_query=T+Rex+Get+It+On" },
+    { id:426, title:"Bang A Gong",       artist:"T. Rex",             genres:["글램 록"],                  mood:{emotion:6,energy:7,calm:3,dark:3}, youtube:"https://www.youtube.com/results?search_query=T+Rex+Bang+A+Gong" },
+    { id:427, title:"School's Out",      artist:"Alice Cooper",       genres:["글램 록","하드 록"],        mood:{emotion:5,energy:8,calm:1,dark:5}, youtube:"https://www.youtube.com/results?search_query=Alice+Cooper+Schools+Out" },
+    { id:428, title:"Poison",            artist:"Alice Cooper",       genres:["글램 록","하드 록"],        mood:{emotion:6,energy:7,calm:3,dark:6}, youtube:"https://www.youtube.com/results?search_query=Alice+Cooper+Poison" },
+    { id:429, title:"Cum On Feel The Noize", artist:"Slade",          genres:["글램 록"],                  mood:{emotion:5,energy:9,calm:1,dark:3}, youtube:"https://www.youtube.com/results?search_query=Slade+Cum+On+Feel+The+Noize" },
+
+    // ── 개러지 록 ──
+    { id:440, title:"Seven Nation Army", artist:"The White Stripes",  genres:["개러지 록"],                mood:{emotion:6,energy:8,calm:2,dark:7}, youtube:"https://www.youtube.com/results?search_query=The+White+Stripes+Seven+Nation+Army" },
+    { id:441, title:"Fell In Love With A Girl", artist:"The White Stripes", genres:["개러지 록"],         mood:{emotion:6,energy:9,calm:1,dark:4}, youtube:"https://www.youtube.com/results?search_query=The+White+Stripes+Fell+In+Love+With+A+Girl" },
+    { id:442, title:"Ball and Biscuit", artist:"The White Stripes",   genres:["개러지 록","블루스 록"],    mood:{emotion:6,energy:7,calm:3,dark:6}, youtube:"https://www.youtube.com/results?search_query=The+White+Stripes+Ball+and+Biscuit" },
+    { id:443, title:"Last Nite",         artist:"The Strokes",        genres:["개러지 록","인디 록"],      mood:{emotion:7,energy:7,calm:3,dark:4}, youtube:"https://www.youtube.com/results?search_query=The+Strokes+Last+Nite" },
+    { id:444, title:"Reptilia",          artist:"The Strokes",        genres:["개러지 록","인디 록"],      mood:{emotion:6,energy:8,calm:2,dark:5}, youtube:"https://www.youtube.com/results?search_query=The+Strokes+Reptilia" },
+    { id:445, title:"Someday",           artist:"The Strokes",        genres:["개러지 록","인디 록"],      mood:{emotion:7,energy:7,calm:4,dark:4}, youtube:"https://www.youtube.com/results?search_query=The+Strokes+Someday" },
+    { id:446, title:"Hard To Explain",   artist:"The Strokes",        genres:["개러지 록"],                mood:{emotion:6,energy:8,calm:2,dark:5}, youtube:"https://www.youtube.com/results?search_query=The+Strokes+Hard+To+Explain" },
+    { id:447, title:"New York City Cops",artist:"The Strokes",        genres:["개러지 록"],                mood:{emotion:5,energy:8,calm:2,dark:5}, youtube:"https://www.youtube.com/results?search_query=The+Strokes+New+York+City+Cops" },
+    { id:448, title:"Lazy Eye",          artist:"Silversun Pickups",  genres:["개러지 록","슈게이징"],     mood:{emotion:7,energy:7,calm:3,dark:6}, youtube:"https://www.youtube.com/results?search_query=Silversun+Pickups+Lazy+Eye" },
+    { id:449, title:"Helena Beat",       artist:"Foster The People",  genres:["개러지 록","인디 팝"],      mood:{emotion:7,energy:7,calm:3,dark:4}, youtube:"https://www.youtube.com/results?search_query=Foster+The+People+Helena+Beat" },
+
+    // ── 포스트 펑크 ──
+    { id:460, title:"Love Will Tear Us Apart", artist:"Joy Division",genres:["포스트 펑크"],              mood:{emotion:9,energy:5,calm:3,dark:9}, youtube:"https://www.youtube.com/results?search_query=Joy+Division+Love+Will+Tear+Us+Apart" },
+    { id:461, title:"Disorder",          artist:"Joy Division",       genres:["포스트 펑크"],              mood:{emotion:7,energy:7,calm:2,dark:9}, youtube:"https://www.youtube.com/results?search_query=Joy+Division+Disorder" },
+    { id:462, title:"Atmosphere",        artist:"Joy Division",       genres:["포스트 펑크","드림 팝"],    mood:{emotion:9,energy:3,calm:5,dark:9}, youtube:"https://www.youtube.com/results?search_query=Joy+Division+Atmosphere" },
+    { id:463, title:"She's Lost Control",artist:"Joy Division",       genres:["포스트 펑크"],              mood:{emotion:7,energy:6,calm:3,dark:9}, youtube:"https://www.youtube.com/results?search_query=Joy+Division+Shes+Lost+Control" },
+    { id:464, title:"Blue Monday",       artist:"New Order",          genres:["포스트 펑크","뉴 웨이브"],  mood:{emotion:6,energy:7,calm:3,dark:7}, youtube:"https://www.youtube.com/results?search_query=New+Order+Blue+Monday" },
+    { id:465, title:"Bizarre Love Triangle", artist:"New Order",      genres:["포스트 펑크","뉴 웨이브"],  mood:{emotion:7,energy:7,calm:3,dark:5}, youtube:"https://www.youtube.com/results?search_query=New+Order+Bizarre+Love+Triangle" },
+    { id:466, title:"Transmission",      artist:"Joy Division",       genres:["포스트 펑크"],              mood:{emotion:7,energy:7,calm:2,dark:8}, youtube:"https://www.youtube.com/results?search_query=Joy+Division+Transmission" },
+    { id:467, title:"She Sells Sanctuary", artist:"The Cult",         genres:["포스트 펑크","하드 록"],    mood:{emotion:6,energy:8,calm:2,dark:6}, youtube:"https://www.youtube.com/results?search_query=The+Cult+She+Sells+Sanctuary" },
+    { id:468, title:"This Charming Man", artist:"The Smiths",         genres:["포스트 펑크","인디 록"],    mood:{emotion:7,energy:6,calm:4,dark:5}, youtube:"https://www.youtube.com/results?search_query=The+Smiths+This+Charming+Man" },
+    { id:469, title:"There Is A Light That Never Goes Out", artist:"The Smiths", genres:["포스트 펑크","인디 록"], mood:{emotion:9,energy:4,calm:5,dark:7}, youtube:"https://www.youtube.com/results?search_query=The+Smiths+There+Is+A+Light+That+Never+Goes+Out" },
+    { id:470, title:"How Soon Is Now",   artist:"The Smiths",         genres:["포스트 펑크"],              mood:{emotion:8,energy:5,calm:4,dark:8}, youtube:"https://www.youtube.com/results?search_query=The+Smiths+How+Soon+Is+Now" },
+    { id:471, title:"Pictures Of You",   artist:"The Cure",           genres:["포스트 펑크","드림 팝"],    mood:{emotion:9,energy:4,calm:5,dark:7}, youtube:"https://www.youtube.com/results?search_query=The+Cure+Pictures+Of+You" },
+    { id:472, title:"Just Like Heaven",  artist:"The Cure",           genres:["포스트 펑크","뉴 웨이브"],  mood:{emotion:8,energy:6,calm:5,dark:4}, youtube:"https://www.youtube.com/results?search_query=The+Cure+Just+Like+Heaven" },
+    { id:473, title:"Boys Don't Cry",    artist:"The Cure",           genres:["포스트 펑크","뉴 웨이브"],  mood:{emotion:7,energy:6,calm:4,dark:5}, youtube:"https://www.youtube.com/results?search_query=The+Cure+Boys+Dont+Cry" },
+
+    // ── 이모 ──
+    { id:480, title:"Sugar We're Goin Down", artist:"Fall Out Boy",   genres:["이모","팝 펑크"],           mood:{emotion:7,energy:8,calm:2,dark:5}, youtube:"https://www.youtube.com/results?search_query=Fall+Out+Boy+Sugar+Were+Goin+Down" },
+    { id:481, title:"Dance, Dance",      artist:"Fall Out Boy",       genres:["이모","팝 펑크"],           mood:{emotion:7,energy:8,calm:2,dark:4}, youtube:"https://www.youtube.com/results?search_query=Fall+Out+Boy+Dance+Dance" },
+    { id:482, title:"Thnks Fr Th Mmrs",  artist:"Fall Out Boy",       genres:["이모","팝 펑크"],           mood:{emotion:6,energy:7,calm:3,dark:5}, youtube:"https://www.youtube.com/results?search_query=Fall+Out+Boy+Thnks+Fr+Th+Mmrs" },
+    { id:483, title:"Helena",            artist:"My Chemical Romance",genres:["이모"],                     mood:{emotion:8,energy:8,calm:1,dark:7}, youtube:"https://www.youtube.com/results?search_query=My+Chemical+Romance+Helena" },
+    { id:484, title:"Cancer",            artist:"My Chemical Romance",genres:["이모","소프트 록"],         mood:{emotion:10,energy:2,calm:5,dark:9}, youtube:"https://www.youtube.com/results?search_query=My+Chemical+Romance+Cancer" },
+    { id:485, title:"The Ghost Of You",  artist:"My Chemical Romance",genres:["이모","소프트 록"],         mood:{emotion:9,energy:4,calm:4,dark:8}, youtube:"https://www.youtube.com/results?search_query=My+Chemical+Romance+The+Ghost+Of+You" },
+    { id:486, title:"Disenchanted",      artist:"My Chemical Romance",genres:["이모","소프트 록"],         mood:{emotion:9,energy:4,calm:5,dark:8}, youtube:"https://www.youtube.com/results?search_query=My+Chemical+Romance+Disenchanted" },
+    { id:487, title:"The Sharpest Lives",artist:"My Chemical Romance",genres:["이모","하드 록"],           mood:{emotion:7,energy:8,calm:1,dark:7}, youtube:"https://www.youtube.com/results?search_query=My+Chemical+Romance+The+Sharpest+Lives" },
+    { id:488, title:"Lying Is The Most Fun", artist:"Panic! At The Disco", genres:["이모","인디 팝"],      mood:{emotion:7,energy:7,calm:3,dark:6}, youtube:"https://www.youtube.com/results?search_query=Panic+At+The+Disco+Lying+Is+The+Most+Fun" },
+    { id:489, title:"I Write Sins Not Tragedies", artist:"Panic! At The Disco", genres:["이모","팝 펑크"], mood:{emotion:6,energy:7,calm:3,dark:5}, youtube:"https://www.youtube.com/results?search_query=Panic+At+The+Disco+I+Write+Sins+Not+Tragedies" },
+    { id:490, title:"Adam's Song",       artist:"blink-182",          genres:["이모","팝 펑크"],           mood:{emotion:9,energy:4,calm:4,dark:8}, youtube:"https://www.youtube.com/results?search_query=blink-182+Adams+Song" },
+    { id:491, title:"I Miss You",        artist:"blink-182",          genres:["이모","팝 펑크"],           mood:{emotion:9,energy:4,calm:5,dark:7}, youtube:"https://www.youtube.com/results?search_query=blink-182+I+Miss+You" },
+    { id:492, title:"Cute Without The E",artist:"Taking Back Sunday", genres:["이모"],                     mood:{emotion:8,energy:7,calm:2,dark:6}, youtube:"https://www.youtube.com/results?search_query=Taking+Back+Sunday+Cute+Without+The+E" },
+    { id:493, title:"A Decade Under The Influence", artist:"Taking Back Sunday", genres:["이모"],          mood:{emotion:7,energy:7,calm:2,dark:6}, youtube:"https://www.youtube.com/results?search_query=Taking+Back+Sunday+A+Decade+Under+The+Influence" },
+    { id:494, title:"Konstantine",       artist:"Something Corporate",genres:["이모","소프트 록"],         mood:{emotion:10,energy:3,calm:6,dark:7}, youtube:"https://www.youtube.com/results?search_query=Something+Corporate+Konstantine" },
+  ];
+
+  let songs = JSON.parse(localStorage.getItem('soundmatch_songs') || 'null') || DEFAULT_SONGS.map(s => ({...s}));
+  const save = () => localStorage.setItem('soundmatch_songs', JSON.stringify(songs));
+
+  function toggleAdmin() {
+    const panel = document.getElementById('admin-panel');
+    const btn   = document.getElementById('admin-toggle');
+    btn.classList.toggle('active', panel.classList.toggle('visible'));
+    if (panel.classList.contains('visible')) renderAdminList();
+  }
+
+  function addSong() {
+    const title   = document.getElementById('f-title').value.trim();
+    const artist  = document.getElementById('f-artist').value.trim();
+    const youtube = document.getElementById('f-youtube').value.trim();
+    const genres  = [...document.querySelectorAll('#form-genre-tags .fret-btn.active')].map(t => t.dataset.value);
+    if (!title || !artist) { showToast('제목과 아티스트는 필수예요!'); return; }
+    const ytUrl = youtube || `https://www.youtube.com/results?search_query=${encodeURIComponent(artist+' '+title)}`;
+    songs.push({
+      id: Date.now(), title, artist, youtube: ytUrl, genres,
+      mood: {
+        emotion: state['f-emotion'],
+        energy:  state['f-energy'],
+        calm:    state['f-calm'],
+        dark:    state['f-dark'],
+      }
+    });
+    save(); resetForm(); renderAdminList(); showToast(`"${title}" 추가됐어요!`);
+  }
+
+  function deleteSong(id) {
+    songs = songs.filter(s => s.id !== id);
+    save(); renderAdminList(); showToast('곡이 삭제됐어요.');
+  }
+
+  function resetForm() {
+    ['f-title','f-artist','f-youtube'].forEach(id => document.getElementById(id).value = '');
+    document.querySelectorAll('#form-genre-tags .fret-btn.active').forEach(t => t.classList.remove('active'));
+    KNOB_DEFS.forEach(k => { state['f-'+k.id] = DEFAULT; applyVal('f-'+k.id); });
+  }
+
+  function renderAdminList() {
+    const list  = document.getElementById('admin-list');
+    document.getElementById('song-count').innerHTML = `등록된 곡 <em>${songs.length}곡</em>`;
+    list.innerHTML = songs.length
+      ? [...songs].reverse().map(s => `
+          <div class="admin-item">
+            <div class="admin-item-info">
+              <div class="admin-item-title">${s.title}</div>
+              <div class="admin-item-artist">${s.artist}</div>
+            </div>
+            <div class="admin-item-tags">${s.genres.map(g=>`<span class="admin-item-tag">${g}</span>`).join('')}</div>
+            <button class="delete-btn" onclick="deleteSong(${s.id})">삭제</button>
+          </div>`).join('')
+      : `<div style="padding:40px;text-align:center;color:var(--muted);font-size:0.85em;letter-spacing:0.1em;">아직 추가된 곡이 없어요</div>`;
+  }
+
+  function findMusic() {
+    const genres = [...document.querySelectorAll('#genre-tags .fret-btn.active')].map(t => t.dataset.value);
+    if (!songs.length) { showNoResults('아직 곡이 없어요. "+ 곡 관리" 에서 추가해보세요!'); return; }
+
+    let list = songs.map(s => {
+      // 무드 거리 (4개 축 합산, 각 0~9)
+      const moodDist =
+        Math.abs(state.emotion - s.mood.emotion) +
+        Math.abs(state.energy  - s.mood.energy)  +
+        Math.abs(state.calm    - s.mood.calm)     +
+        Math.abs(state.dark    - s.mood.dark);
+
+      // 장르 보너스: 선택 장르와 일치할수록 점수 감소 (최대 -12)
+      const genreMatch = genres.length
+        ? genres.filter(g => s.genres.includes(g)).length
+        : 0;
+      const genreBonus = genreMatch * 3; // 일치 장르 1개당 3점 감소
+
+      const score = moodDist - genreBonus;
+      return { ...s, score, genreMatch };
+    });
+
+    // 장르가 선택된 경우 — 일치 장르 없는 곡은 제외
+    if (genres.length) {
+      list = list.filter(s => s.genreMatch > 0);
+    }
+
+    if (!list.length) { showNoResults('조건에 맞는 곡이 없어요. 장르 필터를 바꿔보세요.'); return; }
+
+    // 점수 낮은 순 정렬 후 상위 5곡만
+    list = list.sort((a, b) => a.score - b.score).slice(0, 5);
+
+    document.getElementById('no-results').classList.remove('visible');
+    document.getElementById('result-count').textContent = `${list.length}곡`;
+    document.getElementById('result-list').innerHTML = list.map((s, i) => `
+      <div class="result-item" onclick="previewSong(${s.id})" data-id="${s.id}">
+        <div class="result-num">${String(i+1).padStart(2,'0')}</div>
+        <div class="result-info">
+          <div class="result-title">${s.title}</div>
+          <div class="result-artist">${s.artist}</div>
+        </div>
+        <div class="result-tags">${s.genres.map(g=>`<span class="result-tag">${g}</span>`).join('')}</div>
+        <div class="result-play-icon">▶</div>
+      </div>`).join('');
+    document.getElementById('results').classList.add('visible');
+    window._resultSongs = list;
+    previewSong(list[0].id);
+  }
+
+  // ── YouTube IFrame API ──
+  let ytPlayer = null;
+  let ytReady  = false;
+  let pendingVideoId = null;
+
+  // API 스크립트 동적 로드
+  const ytScript = document.createElement('script');
+  ytScript.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(ytScript);
+
+  window.onYouTubeIframeAPIReady = function() {
+    ytReady = true;
+    if (pendingVideoId) loadPlayer(pendingVideoId);
+  };
+
+  function loadPlayer(videoId) {
+    const embedEl = document.getElementById('preview-embed');
+    embedEl.innerHTML = '<div id="yt-player-div"></div>';
+    if (ytPlayer) { try { ytPlayer.destroy(); } catch(e){} }
+    ytPlayer = new YT.Player('yt-player-div', {
+      width: '100%', height: '100%',
+      videoId,
+      playerVars: { autoplay: 1, rel: 0, modestbranding: 1 },
+      events: {
+        onStateChange: e => {
+          const icon = document.querySelector('.result-item.playing .result-play-icon');
+          if (!icon) return;
+          icon.textContent = e.data === YT.PlayerState.PLAYING ? '■' : '▶';
+        }
+      }
+    });
+  }
+
+  function extractVideoId(url) {
+    const m = url.match(/[?&]v=([^&]+)/);
+    return m ? m[1] : null;
+  }
+
+  function previewSong(id) {
+    const s = (window._resultSongs || []).find(x => x.id === id);
+    if (!s) return;
+    document.querySelectorAll('.result-item').forEach(el => {
+      el.classList.toggle('playing', el.dataset.id == id);
+      el.querySelector('.result-play-icon').textContent = el.dataset.id == id ? '■' : '▶';
+    });
+    document.getElementById('preview-song-title').textContent = s.title;
+    document.getElementById('preview-song-artist').textContent = s.artist;
+    document.getElementById('preview-open-btn').href = s.youtube;
+
+    const videoId = extractVideoId(s.youtube);
+    if (videoId) {
+      if (ytReady) {
+        loadPlayer(videoId);
+      } else {
+        pendingVideoId = videoId;
+        document.getElementById('preview-embed').innerHTML = `
+          <div class="preview-placeholder">
+            <div class="preview-placeholder-icon" style="animation:spin 1s linear infinite">↻</div>
+            <div class="preview-placeholder-text">로딩 중...</div>
+          </div>`;
+      }
+    } else {
+      if (ytPlayer) { try { ytPlayer.destroy(); ytPlayer = null; } catch(e){} }
+      document.getElementById('preview-embed').innerHTML = `
+        <div class="preview-placeholder">
+          <div class="preview-placeholder-icon">♪</div>
+          <div style="font-size:0.78em;color:var(--text);text-align:center;padding:0 20px;line-height:1.8">${s.title}<br><span style="color:var(--muted);font-size:0.9em">${s.artist}</span></div>
+          <div class="preview-placeholder-text">유튜브 검색으로 이동</div>
+        </div>`;
+    }
+  }
+
+  function closePreview() {
+    if (ytPlayer) { try { ytPlayer.stopVideo(); ytPlayer.destroy(); ytPlayer = null; } catch(e){} }
+    document.querySelectorAll('.result-item').forEach(el => {
+      el.classList.remove('playing');
+      el.querySelector('.result-play-icon').textContent = '▶';
+    });
+    document.getElementById('preview-song-title').textContent = '곡을 선택하세요';
+    document.getElementById('preview-song-artist').textContent = '← 왼쪽 목록에서 클릭';
+    document.getElementById('preview-open-btn').href = '#';
+    document.getElementById('preview-embed').innerHTML = `
+      <div class="preview-placeholder">
+        <div class="preview-placeholder-icon">♪</div>
+        <div class="preview-placeholder-text">PREVIEW</div>
+      </div>`;
+  }
+
+  // ── 스페이스바: 재생 / 일시정지 ──
+  document.addEventListener('keydown', e => {
+    if (e.code !== 'Space') return;
+    // 입력창 포커스 중엔 무시
+    const tag = document.activeElement.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+    e.preventDefault();
+    if (!ytPlayer || !ytPlayer.getPlayerState) return;
+    const state = ytPlayer.getPlayerState();
+    if (state === YT.PlayerState.PLAYING) {
+      ytPlayer.pauseVideo();
+      showToast('⏸ 일시정지');
+    } else {
+      ytPlayer.playVideo();
+      showToast('▶ 재생');
+    }
+  });
+
+  function showNoResults(msg) {
+    document.getElementById('results').classList.remove('visible');
+    const el = document.getElementById('no-results');
+    el.textContent = msg; el.classList.add('visible');
+  }
+
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  }
+
+  /* ── 픽업 셀렉터 — 원근감 세로 토글 ── */
+  const THEMES = [
+    { cls: '',            name: 'ORANGE BURST' },
+    { cls: 'theme-white', name: 'ALPINE WHITE'},
+    { cls: 'theme-ebony', name: 'EBONY'       },
+  ];
+  const ACTIVE_COLORS = { '': '#e8a020', 'theme-white': '#8b3a1a', 'theme-ebony': '#d0d0d0' };
+  const MUTED_COLOR   = '#6b5840';
+
+  // 피벗(봉 뿌리): 항상 cx=45, cy=60 (원 중심)
+  // 포지션별 팁 위치 & 원근 파라미터
+  //   tipCy   : 팁 중심 y
+  //   tipRx   : 팁 가로 반지름
+  //   tipRy   : 팁 세로 반지름 (원근: 위=크게, 중=중간, 아래=크게)
+  //   shaftW  : 봉 폭 (가까울수록 넓어 보임)
+  //   hiCyOff : 하이라이트 위치 오프셋
+  const POS = [
+    // NECK — 위: 윗부분 크게 (ryTop 큼), 봉이 중앙→위
+    { tipCy: 36, tipRx: 9, tipRyTop: 14, tipRyBot: 6,  shaftWPiv: 4, shaftWTip: 7 },
+    // MID  — 중앙: 위아래 대칭 세로 타원
+    { tipCy: 60, tipRx: 8, tipRyTop: 11, tipRyBot: 11, shaftWPiv: 4, shaftWTip: 4 },
+    // BRIDGE — 아래: 아랫부분 크게 (ryBot 큼), 봉이 중앙→아래
+    { tipCy: 84, tipRx: 9, tipRyTop: 6,  tipRyBot: 14, shaftWPiv: 7, shaftWTip: 4 },
+  ];
+
+  function drawLever(idx) {
+    const p  = POS[idx];
+    const cx = 45, cy = 60;
+    const ns = 'http://www.w3.org/2000/svg';
+    const g  = document.getElementById('lever-group');
+    g.innerHTML = '';
+
+    const tx = cx, ty = p.tipCy;
+    const rx = p.tipRx, ryT = p.tipRyTop, ryB = p.tipRyBot;
+
+    // ── 봉: 피벗(cy=60)에서 팁 방향으로 뻗는 사다리꼴 ──
+    let shaftPath;
+    if (idx === 0) {
+      // 위로: 피벗쪽 좁고 팁쪽 넓음
+      const endY = ty + ryB;
+      shaftPath = `M${cx - p.shaftWPiv/2},${cy} L${cx + p.shaftWPiv/2},${cy} L${cx + p.shaftWTip/2},${endY} L${cx - p.shaftWTip/2},${endY} Z`;
+    } else if (idx === 2) {
+      // 아래로: 피벗쪽 넓고 팁쪽 좁음 (원근상 반대)
+      const endY = ty - ryT;
+      shaftPath = `M${cx - p.shaftWPiv/2},${cy} L${cx + p.shaftWPiv/2},${cy} L${cx + p.shaftWTip/2},${endY} L${cx - p.shaftWTip/2},${endY} Z`;
+    } else {
+      // 중앙: 위아래 양쪽으로 균등하게
+      const hw = p.shaftWPiv / 2;
+      shaftPath = `M${cx - hw},${cy - ryT} L${cx + hw},${cy - ryT} L${cx + hw},${cy + ryB} L${cx - hw},${cy + ryB} Z`;
+    }
+
+    // 봉 그림자
+    const ss = document.createElementNS(ns, 'path');
+    ss.setAttribute('d', shaftPath); ss.setAttribute('fill', 'rgba(0,0,0,0.45)');
+    ss.setAttribute('transform', 'translate(1.5,2)'); g.appendChild(ss);
+    // 봉 본체
+    const sh = document.createElementNS(ns, 'path');
+    sh.setAttribute('d', shaftPath); sh.setAttribute('fill', 'url(#shaftG)'); g.appendChild(sh);
+    // 봉 하이라이트
+    const shl = document.createElementNS(ns, 'line');
+    const y1 = idx === 0 ? cy : cy - ryT, y2 = idx === 0 ? ty + ryB : idx === 2 ? ty - ryT : cy + ryB;
+    shl.setAttribute('x1', cx - 0.4); shl.setAttribute('y1', Math.min(y1,y2));
+    shl.setAttribute('x2', cx - 0.4); shl.setAttribute('y2', Math.max(y1,y2));
+    shl.setAttribute('stroke', 'rgba(255,255,255,0.07)'); shl.setAttribute('stroke-width', '1');
+    g.appendChild(shl);
+
+    // ── 팁: 비대칭 세로 타원 (위 ryTop, 아래 ryBot) ──
+    const tipPath = `M${tx - rx},${ty} C${tx - rx},${ty - ryT} ${tx + rx},${ty - ryT} ${tx + rx},${ty} C${tx + rx},${ty + ryB} ${tx - rx},${ty + ryB} ${tx - rx},${ty} Z`;
+
+    // 팁 그림자
+    const ts = document.createElementNS(ns, 'path');
+    ts.setAttribute('d', tipPath); ts.setAttribute('fill', 'rgba(0,0,0,0.45)');
+    ts.setAttribute('transform', 'translate(1.5,2.5)'); g.appendChild(ts);
+    // 팁 본체
+    const tip = document.createElementNS(ns, 'path');
+    tip.setAttribute('d', tipPath); tip.setAttribute('fill', 'url(#tipG)');
+    tip.setAttribute('stroke', '#8a7040'); tip.setAttribute('stroke-width', '0.7');
+    g.appendChild(tip);
+    // 좌우 어두운 엣지
+    const te = document.createElementNS(ns, 'path');
+    te.setAttribute('d', tipPath); te.setAttribute('fill', 'url(#rimSideG)'); g.appendChild(te);
+    // 하이라이트: 위쪽에 집중
+    const hiCy = ty - ryT * 0.42;
+    const hi = document.createElementNS(ns, 'ellipse');
+    hi.setAttribute('cx', tx - rx * 0.15); hi.setAttribute('cy', hiCy);
+    hi.setAttribute('rx', rx * 0.44); hi.setAttribute('ry', ryT * 0.3);
+    hi.setAttribute('fill', 'rgba(255,252,240,0.82)'); g.appendChild(hi);
+    // 테두리 광택
+    const tr = document.createElementNS(ns, 'path');
+    tr.setAttribute('d', tipPath); tr.setAttribute('fill', 'none');
+    tr.setAttribute('stroke', 'rgba(255,255,255,0.18)'); tr.setAttribute('stroke-width', '0.5');
+    g.appendChild(tr);
+  }
+
+  let currentTheme = 0;
+
+  function setTheme(idx) {
+    currentTheme = idx;
+    const root      = document.documentElement;
+    const nameBadge = document.getElementById('theme-name');
+
+    THEMES.forEach(t => { if (t.cls) root.classList.remove(t.cls); });
+    const t = THEMES[idx];
+    if (t.cls) root.classList.add(t.cls);
+
+    drawLever(idx);
+
+    const ac = ACTIVE_COLORS[t.cls];
+    const l0 = document.getElementById('svg-lbl-0');
+    const l2 = document.getElementById('svg-lbl-2');
+    if (l0) l0.setAttribute('fill', idx === 0 ? ac : MUTED_COLOR);
+    if (l2) l2.setAttribute('fill', idx === 2 ? ac : MUTED_COLOR);
+
+    nameBadge.textContent = t.name;
+    requestAnimationFrame(() => requestAnimationFrame(() => updateKnobSVGs()));
+  }
+
+  // 스크롤로 픽업 변경
+  document.getElementById('pickup-svg').addEventListener('wheel', e => {
+    e.preventDefault();
+    const next = Math.max(0, Math.min(THEMES.length - 1, currentTheme + (e.deltaY > 0 ? 1 : -1)));
+    if (next !== currentTheme) setTheme(next);
+  }, { passive: false });
+
+  // 터치 스와이프 지원
+  let touchStartY = 0;
+  const svgEl = document.getElementById('pickup-svg');
+  svgEl.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; }, { passive: true });
+  svgEl.addEventListener('touchend', e => {
+    const dy = touchStartY - e.changedTouches[0].clientY;
+    if (Math.abs(dy) < 10) return;
+    const next = Math.max(0, Math.min(THEMES.length - 1, currentTheme + (dy > 0 ? 1 : -1)));
+    if (next !== currentTheme) setTheme(next);
+  }, { passive: true });
+
+  setTheme(0);
+</script>
+</body>
+</html>
